@@ -4,7 +4,7 @@ import Foundation
 class HTTPClient {
 
     //----------------------------------------
-    // MARK: - API requests
+    // MARK: - Actions
     //----------------------------------------
     
     func apiRequest(request: URLRequest) -> AnyPublisher<(HTTPURLResponse, Data), Error> {
@@ -21,10 +21,6 @@ class HTTPClient {
             .eraseToAnyPublisher()
     }
     
-    //----------------------------------------
-    // MARK: - Error handling
-    //----------------------------------------
-    
     private func handleResponseFailure(data: Data?, response: URLResponse?) -> AppError {
         var error = AppError.badRequest
         
@@ -34,11 +30,11 @@ class HTTPClient {
                 error = .authentication
 
                 do {
-                    let apiError = try JSONDecoder().decode(ApiError.self, from: data!)
+                    let apiError = try JSONDecoder().decode(APIError.self, from: data!)
                     switch apiError.code {
 
                     default:
-                        error = .authentication
+                        break
                     }
                 } catch {
                     break

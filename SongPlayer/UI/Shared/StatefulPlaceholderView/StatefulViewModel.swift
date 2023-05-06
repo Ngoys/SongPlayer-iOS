@@ -55,7 +55,8 @@ class StatefulViewModel<T>: BaseViewModel {
     }
 
     private func proceedToLoad() {
-        load().sink { completion in
+        load().sink { [weak self] completion in
+            guard let self = self else { return }
             switch completion {
             case .finished:
                 break
@@ -63,7 +64,8 @@ class StatefulViewModel<T>: BaseViewModel {
             case .failure(let error):
                 self.transition(with: .loadFailure(error))
             }
-        } receiveValue: { data in
+        } receiveValue: { [weak self] data in
+            guard let self = self else { return }
             self.transition(with: .loadSuccess(data))
         }.store(in: &cancellables)
     }

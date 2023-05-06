@@ -5,6 +5,7 @@ protocol StatefulPlaceholderViewDelegate: AnyObject {
 }
 
 class StatefulPlaceholderView: UIView {
+    
     //----------------------------------------
     // MARK: - Initialization
     //----------------------------------------
@@ -22,7 +23,7 @@ class StatefulPlaceholderView: UIView {
     }
 
     private func sharedInit() {
-        let view = UINib(nibName: "StatefulPlaceholderView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
+        let view = UINib(nibName: String(describing: StatefulPlaceholderView.self), bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [

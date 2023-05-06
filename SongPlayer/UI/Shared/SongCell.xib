@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SongCell" id="9KN-tR-79X" customClass="SongCell" customModule="SongPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="177"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EeM-NW-9GG">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="177"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R46-au-iJg" customClass="SongView" customModule="SongPlayer" customModuleProvider="target">
+                        <rect key="frame" x="8" y="4" width="358" height="169"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="R46-au-iJg" secondAttribute="trailing" constant="8" id="3Gh-K0-Y5M"/>
+                    <constraint firstItem="R46-au-iJg" firstAttribute="leading" secondItem="EeM-NW-9GG" secondAttribute="leading" constant="8" id="L16-Um-QXi"/>
+                    <constraint firstAttribute="bottom" secondItem="R46-au-iJg" secondAttribute="bottom" constant="4" id="j3o-UC-Zdd"/>
+                    <constraint firstItem="R46-au-iJg" firstAttribute="top" secondItem="EeM-NW-9GG" secondAttribute="top" constant="4" id="sny-Re-y4M"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="374" height="189"/>
+            <connections>
+                <outlet property="songView" destination="R46-au-iJg" id="3UO-aB-6PO"/>
+            </connections>
+            <point key="canvasLocation" x="-66.666666666666671" y="-137.61160714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>
