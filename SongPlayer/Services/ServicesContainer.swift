@@ -31,6 +31,9 @@ class ServiceContainer {
         container.register(type: SongStore.self,
                            service: SongStore(apiClient: container.resolve(type: SongPlayerAPIClient.self)))
 
+        container.register(type: DownloadStore.self,
+                           service: DownloadStore())
+
         //----------------------------------------
         // MARK: - DownloadManager
         //----------------------------------------

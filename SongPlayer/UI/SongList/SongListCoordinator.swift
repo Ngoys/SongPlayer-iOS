@@ -11,7 +11,7 @@ class SongListCoordinator: BaseCoordinator {
     //----------------------------------------
 
     init(songListViewController: SongListViewController) {
-        songListViewController.viewModel = SongListViewModel(songStore: ServiceContainer.container.resolve(type: SongStore.self))
+        songListViewController.viewModel = SongListViewModel(songStore: ServiceContainer.container.resolve(type: SongStore.self), downloadStore: ServiceContainer.container.resolve(type: DownloadStore.self))
 
         self.songListViewController = songListViewController
     }

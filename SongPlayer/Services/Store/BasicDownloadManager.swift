@@ -54,11 +54,15 @@ class BasicDownloadManager: BaseDownloadManager {
                         }
 
                         // Write to file
-                        let fileName = "\(downloadItem.contentIdentifier).\(downloadType)" //LALA check this
+                        let fileName = "\(downloadItem.contentIdentifier).\(downloadType)"
                         let fileURL = downloadsFolderURL.appendingPathComponent(fileName)
+
+                        // Replace file if needed
                         try? FileManager.default.removeItem(at: fileURL)
+
                         try FileManager.default.moveItem(at: localPathURL, to: fileURL)
 
+                        print("BasicDownloadManager - downloadStatusSubject - .downloaded - \(fileURL.absoluteString)")
                         downloadItem.status = .downloaded(localFilePath: fileURL.absoluteString)
 
                     } catch {
@@ -103,20 +107,23 @@ extension BasicDownloadManager: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
         if let downloadOperation = self.getDownloadOperation(task: downloadTask) {
-            let calculatedProgress = Double(fileOffset) / Double(expectedTotalBytes)
-            downloadOperation.downloadStatusSubject.send(.downloading(progress: calculatedProgress))
+            let progress = Double(fileOffset) / Double(expectedTotalBytes)
+            print("BasicDownloadManager - didResumeAtOffset progress - \(progress)")
+            downloadOperation.downloadStatusSubject.send(.downloading(progress: progress))
         }
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         if let downloadOperation = self.getDownloadOperation(task: downloadTask) {
-            let calculatedProgress = Double(bytesWritten) / Double(totalBytesExpectedToWrite)
-            downloadOperation.downloadStatusSubject.send(.downloading(progress: calculatedProgress))
+            let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+            print("BasicDownloadManager - didWriteData progress - \(progress)")
+            downloadOperation.downloadStatusSubject.send(.downloading(progress: progress))
         }
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         if let downloadOperation = self.getDownloadOperation(task: downloadTask) {
+            print("BasicDownloadManager - didFinishDownloadingTo - \(location.absoluteString)")
             downloadOperation.downloadStatusSubject.send(.downloaded(localFilePath: location.absoluteString))
         }
     }
@@ -124,10 +131,13 @@ extension BasicDownloadManager: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let error = error else { return }
 
-            if let downloadOperation = self.getDownloadOperation(task: task) {
+        if let downloadOperation = self.getDownloadOperation(task: task) {
+            let nsError = error as NSError
             let downloadError: DownloadError = .badRequest
 
-            switch (error as NSError).code {
+            print("BasicDownloadManager - didCompleteWithError - \(nsError.code) \(error.localizedDescription)")
+
+            switch nsError.code {
             case -999:
                 // -999 means cancel, user's cancel IS NOT .failed
                 downloadOperation.downloadStatusSubject.send(.queued)

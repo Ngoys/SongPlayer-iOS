@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-//LALA override all the .isReady state here??
+//TODO override all the .isReady state here??
 class DownloadOperation: Operation {
 
     //----------------------------------------

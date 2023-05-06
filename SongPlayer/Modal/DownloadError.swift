@@ -7,5 +7,5 @@ enum DownloadError: Error {
     case internetDisconnected
     case notSupportedYet
 
-    //LALA alert prompt error mssage
+    //TODO alert prompt error mssage
 }

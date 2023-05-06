@@ -7,8 +7,9 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     // MARK: - Initialization
     //----------------------------------------
 
-    init(songStore: SongStore) {
+    init(songStore: SongStore, downloadStore: DownloadStore) {
         self.songStore = songStore
+        self.downloadStore = downloadStore
     }
 
     //----------------------------------------
@@ -30,19 +31,41 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
 
     func download(id: String) {
         guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
-        var stateClone = songPresentationModel.state.value
-        stateClone.status = .canPlay
-        songPresentationModel.state.send(stateClone)
+
+        let downloadItem = downloadStore.download(contentIdentifier: songPresentationModel.song.downloadContentIdentifier, downloadURL: songPresentationModel.song.downloadURL, downloadType: songPresentationModel.song.downloadType)
+        handleDownloadItemStatusChange(downloadItem: downloadItem)
+    }
+
+    private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
+        downloadItem.statusDidChange
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] status in
+                guard let self = self else { return }
+                guard let songPresentationModel = self.songPresentationModelsSubject.value.first(where: { $0.song.id == downloadItem.contentIdentifier }) else { return }
+
+                var stateClone = songPresentationModel.state.value
+
+                switch status {
+                case .downloaded(_):
+                    //TODO save song in coredata
+                    stateClone.status = .canPlay
+
+                case .downloading(let progress):
+                    stateClone.status = .isDownloading(progress: progress)
+
+                case .error(_):
+                    stateClone.status = .canDownload
+
+                case .queued:
+                    stateClone.status = .isDownloading(progress: 0)
+                }
+
+                songPresentationModel.state.send(stateClone)
+            }).store(in: &cancellables)
     }
 
     func play(id: String) {
         guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
-
-        for i in stride(from: 0.1, through: 1.0, by: 0.1) {
-            var stateClone = songPresentationModel.state.value
-            stateClone.status = .isDownloading(progress: i)
-            songPresentationModel.state.send(stateClone)
-        }
     }
 
     func pause() {
@@ -55,4 +78,6 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     private let songPresentationModelsSubject = CurrentValueSubject<[SongPresentationModel], Never>([])
 
     private let songStore: SongStore
+
+    private let downloadStore: DownloadStore
 }
