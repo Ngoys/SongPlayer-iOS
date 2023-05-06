@@ -1,28 +1,27 @@
 import Foundation
-import Combine
+import UIKit
 
-class SongListViewModel: StatefulViewModel<[Song]> {
+class SongCellViewModel {
 
     //----------------------------------------
     // MARK: - Initialization
     //----------------------------------------
-
-    init(songStore: SongStore) {
-        self.songStore = songStore
+    
+    init(song: Song) {
+        self.song = song
     }
-
+    
     //----------------------------------------
-    // MARK: - Actions
+    // MARK: - Presentation
     //----------------------------------------
 
-    override func load() -> AnyPublisher<[Song], Error> {
-        print("SongListViewModel - fetchSongs()")
-        return songStore.fetchSongs()
+    var titleText: String? {
+        return self.song.name
     }
 
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------
-
-    private let songStore: SongStore
+    
+    private let song: Song
 }

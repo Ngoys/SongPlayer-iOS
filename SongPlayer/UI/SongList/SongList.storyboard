@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,10 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vzG-hf-wvb">
-                                <rect key="frame" x="0.0" y="63" width="414" height="770"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vzG-hf-wvb">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" name="WhiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="eFd-Tg-aBN">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,8 +29,8 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYq-zQ-Iju" customClass="StatefulPlaceholderView" customModule="nytimes_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYq-zQ-Iju" customClass="StatefulPlaceholderView" customModule="SongPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -38,12 +38,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qYq-zQ-Iju" secondAttribute="trailing" id="06x-x8-1cT"/>
+                            <constraint firstItem="vzG-hf-wvb" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="5Gb-Fg-x9G"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qYq-zQ-Iju" secondAttribute="bottom" id="CD8-og-Jo8"/>
-                            <constraint firstItem="qYq-zQ-Iju" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="J5Z-tk-pWv"/>
                             <constraint firstItem="qYq-zQ-Iju" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="PmQ-cA-tTE"/>
+                            <constraint firstItem="vzG-hf-wvb" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ZaT-2H-F8B"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="vzG-hf-wvb" secondAttribute="bottom" id="h0T-Ch-W9P"/>
+                            <constraint firstItem="vzG-hf-wvb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="y3t-FN-Mnt"/>
+                            <constraint firstItem="qYq-zQ-Iju" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zZH-Iy-njc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v3o-RR-YWn"/>
+                    <connections>
+                        <outlet property="collectionView" destination="vzG-hf-wvb" id="4BI-vc-lGf"/>
+                        <outlet property="statefulPlaceholderView" destination="qYq-zQ-Iju" id="d1Y-TX-gUy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,10 +60,9 @@
         <!--Navigation Controller-->
         <scene sceneID="0WV-6G-1cj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nEw-Vj-0fk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nEw-Vj-0fk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YJz-yV-eY3">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
@@ -72,6 +79,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="WhiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

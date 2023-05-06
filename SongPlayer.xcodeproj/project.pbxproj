@@ -43,6 +43,9 @@
 		C2D3F17F2A05FC4400A8E9FF /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F17E2A05FC4400A8E9FF /* Song.swift */; };
 		C2D3F1812A05FC8900A8E9FF /* SongPlayerAPIJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */; };
 		C2D3F1832A05FE7100A8E9FF /* SongPlayerAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */; };
+		C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1842A060CFE00A8E9FF /* SongCell.swift */; };
+		C2D3F1882A060CFE00A8E9FF /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D3F1852A060CFE00A8E9FF /* SongCell.xib */; };
+		C2D3F1892A060CFE00A8E9FF /* SongCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1862A060CFE00A8E9FF /* SongCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		C2D3F17E2A05FC4400A8E9FF /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIJSON.swift; sourceTree = "<group>"; };
 		C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIResponse.swift; sourceTree = "<group>"; };
+		C2D3F1842A060CFE00A8E9FF /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		C2D3F1852A060CFE00A8E9FF /* SongCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
+		C2D3F1862A060CFE00A8E9FF /* SongCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				C24FD04B2A05F28A0063D18B /* StatefulPlaceholderView */,
+				C2D3F1852A060CFE00A8E9FF /* SongCell.xib */,
+				C2D3F1842A060CFE00A8E9FF /* SongCell.swift */,
+				C2D3F1862A060CFE00A8E9FF /* SongCellViewModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -303,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D3F1882A060CFE00A8E9FF /* SongCell.xib in Resources */,
 				C24FD00C2A05EF840063D18B /* LaunchScreen.storyboard in Resources */,
 				C24FD0552A05F33D0063D18B /* Localizable.strings in Resources */,
 				C24FD0092A05EF840063D18B /* Assets.xcassets in Resources */,
@@ -337,8 +347,10 @@
 				C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */,
 				C2D3F17A2A05FB6600A8E9FF /* ServicesContainer.swift in Sources */,
 				C24FD0612A05F45A0063D18B /* Array+Extension.swift in Sources */,
+				C2D3F1892A060CFE00A8E9FF /* SongCellViewModel.swift in Sources */,
 				C24FD0432A05F0CC0063D18B /* BaseCoordinator.swift in Sources */,
 				C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */,
+				C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */,
 				C2D3F1752A05FB6600A8E9FF /* ApiError.swift in Sources */,
 				C24FD0512A05F28A0063D18B /* StatefulViewModel.swift in Sources */,
 				C24FD0402A05F0CC0063D18B /* BaseStore.swift in Sources */,
