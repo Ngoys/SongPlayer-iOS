@@ -22,25 +22,25 @@ class DownloadStore: BaseStore {
         return downloadingItemsSubject.value.first(where: { $0.contentIdentifier == contentIdentifier })
     }
 
-    func download(contentIdentifier: String, downloadURL: URL, downloadType: DownloadType) -> DownloadItem {
+    func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
         if let downloadItem = getDownloadingItem(contentIdentifier: contentIdentifier) {
             return downloadItem
         }
 
         var downloadItem: DownloadItem?
         
-        switch downloadType {
+        switch downloadFileFormat {
         case .mp3, .jpg, .png:
-            downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
+            downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
 
         case .zip:
-            downloadItem = zipDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
+            downloadItem = zipDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
 
         case .pdf:
-            downloadItem = pdfDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
+            downloadItem = pdfDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
 
         case .mp4:
-            downloadItem = videoDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
+            downloadItem = videoDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
         }
 
         guard let downloadItem = downloadItem else {

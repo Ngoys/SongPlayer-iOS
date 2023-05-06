@@ -1,6 +1,6 @@
 import Foundation
 
-enum DownloadType {
+enum DownloadFileFormat {
     case mp3
     case jpg
     case png

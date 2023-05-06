@@ -19,7 +19,7 @@ class BasicDownloadManager: BaseDownloadManager {
     // MARK: - Actions
     //----------------------------------------
 
-    override func download(contentIdentifier: String, downloadURL: URL, downloadType: DownloadType) -> DownloadItem {
+    override func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
         // download task
         let downloadItem = DownloadItem(contentIdentifier: contentIdentifier, downloadURL: downloadURL)
 
@@ -54,7 +54,7 @@ class BasicDownloadManager: BaseDownloadManager {
                         }
 
                         // Write to file
-                        let fileName = "\(downloadItem.contentIdentifier).\(downloadType)"
+                        let fileName = "\(downloadItem.contentIdentifier).\(downloadFileFormat)"
                         let fileURL = downloadsFolderURL.appendingPathComponent(fileName)
 
                         // Replace file if needed

@@ -32,7 +32,7 @@ extension Song: DownloadableContent {
         return self.audioURL
     }
 
-    var downloadType: DownloadType {
+    var downloadFileFormat: DownloadFileFormat {
         return .mp3
     }
 }

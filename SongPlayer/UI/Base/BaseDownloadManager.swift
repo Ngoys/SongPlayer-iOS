@@ -13,7 +13,7 @@ class BaseDownloadManager: NSObject, DownloadManager {
     // MARK: - Actions
     //----------------------------------------
 
-    func download(contentIdentifier: String, downloadURL: URL, downloadType: DownloadType) -> DownloadItem {
+    func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
         fatalError("download method must be implemented !!!")
     }
 }

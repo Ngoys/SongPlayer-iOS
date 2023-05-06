@@ -32,7 +32,7 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     func download(id: String) {
         guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
 
-        let downloadItem = downloadStore.download(contentIdentifier: songPresentationModel.song.downloadContentIdentifier, downloadURL: songPresentationModel.song.downloadURL, downloadType: songPresentationModel.song.downloadType)
+        let downloadItem = downloadStore.download(contentIdentifier: songPresentationModel.song.downloadContentIdentifier, downloadURL: songPresentationModel.song.downloadURL, downloadFileFormat: songPresentationModel.song.downloadFileFormat)
         handleDownloadItemStatusChange(downloadItem: downloadItem)
     }
 
