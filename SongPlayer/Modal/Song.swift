@@ -17,3 +17,22 @@ struct Song: Codable, Hashable {
         lhs.id == rhs.id
     }
 }
+
+//----------------------------------------
+// MARK: - DownloadableContent
+//----------------------------------------
+
+extension Song: DownloadableContent {
+
+    var downloadContentIdentifier: String {
+        return self.id
+    }
+
+    var downloadURL: URL {
+        return self.audioURL
+    }
+
+    var downloadFileFormat: DownloadFileFormat {
+        return .mp3
+    }
+}

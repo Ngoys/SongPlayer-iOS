@@ -31,6 +31,9 @@ class CircleProgressBar: UIView {
         backgroundLayer.fillColor = UIColor.clear.cgColor
         layer.addSublayer(backgroundLayer)
 
+        // Remove progress animation
+        progressLayer.actions = ["strokeEnd" : NSNull()]
+        
         progressLayer.path = circularPath.cgPath
         progressLayer.strokeColor = progressBarColor.cgColor
         progressLayer.lineWidth = progressBarLineWidth

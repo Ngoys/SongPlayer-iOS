@@ -24,8 +24,31 @@ class ServiceContainer {
         container.register(type: SongPlayerAPIClient.self,
                            service: SongPlayerAPIClient(apiBaseURL: AppConstant.baseURL, httpClient: container.resolve(type: HTTPClient.self)))
 
+        //----------------------------------------
+        // MARK: - Stores
+        //----------------------------------------
+
         container.register(type: SongStore.self,
                            service: SongStore(apiClient: container.resolve(type: SongPlayerAPIClient.self)))
+
+        container.register(type: DownloadStore.self,
+                           service: DownloadStore())
+
+        //----------------------------------------
+        // MARK: - DownloadManager
+        //----------------------------------------
+
+        container.register(type: BasicDownloadManager.self,
+                           service: BasicDownloadManager())
+
+        container.register(type: ZipDownloadManager.self,
+                           service: ZipDownloadManager())
+
+        container.register(type: PDFDownloadManager.self,
+                           service: PDFDownloadManager())
+
+        container.register(type: VideoDownloadManager.self,
+                           service: VideoDownloadManager())
 
         return container
     }
