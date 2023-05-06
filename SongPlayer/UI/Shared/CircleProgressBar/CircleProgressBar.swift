@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+// Core concept is from:
 // https://cemkazim.medium.com/how-to-create-animated-circular-progress-bar-in-swift-f86c4d22f74b
 class CircleProgressBar: UIView {
 
@@ -65,7 +66,7 @@ class CircleProgressBar: UIView {
         }
     }
 
-    var progressBarColor: UIColor = UIColor(hexString: "#D0021B") {
+    var progressBarColor: UIColor = .red {
         didSet {
             progressLayer.strokeColor = progressBarColor.cgColor
         }
