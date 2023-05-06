@@ -37,11 +37,12 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     }
 
     private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
+        guard let songPresentationModel = self.songPresentationModelsSubject.value.first(where: { $0.song.id == downloadItem.contentIdentifier }) else { return }
+
         downloadItem.statusDidChange
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] status in
                 guard let self = self else { return }
-                guard let songPresentationModel = self.songPresentationModelsSubject.value.first(where: { $0.song.id == downloadItem.contentIdentifier }) else { return }
 
                 var stateClone = songPresentationModel.state.value
 
