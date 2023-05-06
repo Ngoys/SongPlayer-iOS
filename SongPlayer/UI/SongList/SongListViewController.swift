@@ -39,7 +39,7 @@ class SongListViewController: BaseViewController {
     override func configureViews() {
         collectionView.register(UINib(nibName: String(describing: SongCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: SongCell.self))
 
-        collectionView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 16, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
 
         collectionView.collectionViewLayout = createCollectionViewLayout()
         collectionView.delegate = self
