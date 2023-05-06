@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="EBGaramond.ttf">
+            <string>EBGaramondRoman-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatefulPlaceholderView" customModule="SongPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingIndicatorView" destination="xjF-eE-O5u" id="b2O-Gu-1GQ"/>
+                <outlet property="retryButton" destination="Q0c-sH-bQZ" id="xq3-eS-Kce"/>
+                <outlet property="subtitleLabel" destination="Cv9-m5-2Xp" id="MXG-O5-HlS"/>
+                <outlet property="titleLabel" destination="IFT-E7-7BN" id="4GH-6x-xri"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fka-R5-QG3">
+                    <rect key="frame" x="56" y="346.5" width="302" height="145"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-eE-O5u">
+                            <rect key="frame" x="132.5" y="0.0" width="37" height="37"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're offline" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFT-E7-7BN">
+                            <rect key="frame" x="93.5" y="45" width="115.5" height="23.5"/>
+                            <fontDescription key="fontDescription" name="EBGaramondRoman-Medium" family="EB Garamond" pointSize="20"/>
+                            <color key="textColor" name="primaryTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your internet and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cv9-m5-2Xp">
+                            <rect key="frame" x="45" y="76.5" width="212.5" height="19.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                            <color key="textColor" name="secondaryTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izE-i8-W0v">
+                            <rect key="frame" x="0.0" y="104" width="302" height="0.0"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="qDK-bY-jdZ"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-sH-bQZ">
+                            <rect key="frame" x="101" y="112" width="100" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="8HL-qx-KT6"/>
+                                <constraint firstAttribute="height" constant="33" id="w0v-ai-bTP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                            <state key="normal" title="Try Again">
+                                <color key="titleColor" name="primaryTextColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="17"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="retryButtonDidTap:" destination="-1" eventType="primaryActionTriggered" id="610-65-o1f"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fka-R5-QG3" secondAttribute="trailing" constant="56" id="H5h-AS-CYX"/>
+                <constraint firstItem="Fka-R5-QG3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="56" id="QgL-gH-va4"/>
+                <constraint firstItem="Fka-R5-QG3" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="f9j-rJ-0F6"/>
+                <constraint firstItem="Fka-R5-QG3" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-36" id="zC7-82-Uy5"/>
+            </constraints>
+            <point key="canvasLocation" x="49" y="72"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="primaryTextColor">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryTextColor">
+            <color red="0.59607843137254901" green="0.59607843137254901" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

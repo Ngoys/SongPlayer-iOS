@@ -1,0 +1,11 @@
+
+//----------------------------------------
+// MARK: - Error
+//----------------------------------------
+
+"error.general" = "An error occurred. Please try again later.";
+"error.something_went_wrong" = "Something went wrong";
+"error.please_try_again_later" = "Please try again later";
+
+"error.offline.title" = "You’re offline";
+"error.offline.message" = "Check your data or Wi-Fi\nconnection and try again.";
