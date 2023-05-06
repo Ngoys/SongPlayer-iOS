@@ -38,9 +38,11 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     func play(id: String) {
         guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
 
-        var stateClone = songPresentationModel.state.value
-        stateClone.status = .canPause
-        songPresentationModel.state.send(stateClone)
+        for i in stride(from: 0.1, through: 1.0, by: 0.1) {
+            var stateClone = songPresentationModel.state.value
+            stateClone.status = .isDownloading(progress: i)
+            songPresentationModel.state.send(stateClone)
+        }
     }
 
     func pause() {

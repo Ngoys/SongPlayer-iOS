@@ -39,6 +39,8 @@
 		C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */; };
 		C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D72A062B3700540FF9 /* SongPresentationState.swift */; };
 		C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */; };
+		C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */; };
+		C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */; };
 		C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* APIError.swift */; };
 		C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */; };
 		C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */; };
@@ -89,6 +91,8 @@
 		C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationModel.swift; sourceTree = "<group>"; };
 		C291D4D72A062B3700540FF9 /* SongPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationState.swift; sourceTree = "<group>"; };
 		C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationStatus.swift; sourceTree = "<group>"; };
+		C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C2D3F16D2A05FB6600A8E9FF /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIClient.swift; sourceTree = "<group>"; };
 		C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				C24FD04B2A05F28A0063D18B /* StatefulPlaceholderView */,
+				C291D4DD2A064F4100540FF9 /* CircleProgressBar */,
 				C291D4CC2A06251800540FF9 /* SongView */,
 				C2D3F1852A060CFE00A8E9FF /* SongCell.xib */,
 				C2D3F1842A060CFE00A8E9FF /* SongCell.swift */,
@@ -246,6 +251,7 @@
 				C24FD05E2A05F45A0063D18B /* SongPlayerDateFormatter.swift */,
 				C24FD05F2A05F45A0063D18B /* URLRequest+Extension.swift */,
 				C291D4D32A06291100540FF9 /* UIView+Extension.swift */,
+				C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */,
 				C24FD0642A05F5380063D18B /* String+Extension.swift */,
 			);
 			path = Utilities;
@@ -260,6 +266,14 @@
 			name = SongView;
 			path = SongPlayer/UI/Shared/SongView;
 			sourceTree = SOURCE_ROOT;
+		};
+		C291D4DD2A064F4100540FF9 /* CircleProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */,
+			);
+			path = CircleProgressBar;
+			sourceTree = "<group>";
 		};
 		C2D3F16C2A05FB6600A8E9FF /* Services */ = {
 			isa = PBXGroup;
@@ -373,6 +387,7 @@
 				C24FD0002A05EF830063D18B /* AppDelegate.swift in Sources */,
 				C2D3F1832A05FE7100A8E9FF /* SongPlayerAPIResponse.swift in Sources */,
 				C24FD0422A05F0CC0063D18B /* BaseUICollectionViewCell.swift in Sources */,
+				C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */,
 				C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */,
 				C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */,
 				C24FD0602A05F45A0063D18B /* AppConstant.swift in Sources */,
@@ -393,6 +408,7 @@
 				C24FD0462A05F0CC0063D18B /* MainViewModel.swift in Sources */,
 				C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */,
 				C24FD0472A05F0CC0063D18B /* SongListViewController.swift in Sources */,
+				C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */,
 				C2D3F1812A05FC8900A8E9FF /* SongPlayerAPIJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

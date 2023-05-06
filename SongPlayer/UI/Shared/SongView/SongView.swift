@@ -57,21 +57,26 @@ class SongView: UIView {
             case .canPlay:
                 playPauseImageView.isHidden = false
                 downloadImageView.isHidden = true
+                circleProgressBar.isHidden = true
                 playPauseImageView.image = UIImage(named: "ic-play")
 
             case .canPause:
                 playPauseImageView.isHidden = false
                 downloadImageView.isHidden = true
+                circleProgressBar.isHidden = true
                 playPauseImageView.image = UIImage(named: "ic-pause")
 
             case .canDownload:
                 playPauseImageView.isHidden = true
                 downloadImageView.isHidden = false
+                circleProgressBar.isHidden = true
                 downloadImageView.image = UIImage(named: "ic-download")
 
             case .isDownloading(let progress):
                 playPauseImageView.isHidden = true
                 downloadImageView.isHidden = true
+                circleProgressBar.isHidden = false
+                circleProgressBar.progress = progress
 
             default:
                 break
@@ -131,4 +136,6 @@ class SongView: UIView {
     @IBOutlet private var titleLabel: UILabel!
 
     @IBOutlet private var actionButton: UIButton!
+
+    @IBOutlet private var circleProgressBar: CircleProgressBar!
 }
