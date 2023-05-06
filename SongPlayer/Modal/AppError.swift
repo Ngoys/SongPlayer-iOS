@@ -6,6 +6,7 @@ enum AppError: Error {
     case network
 
     // HTTP Status Code 400 range.
+    case authentication
     case badRequest
     case notFound
     case invalidateSession
