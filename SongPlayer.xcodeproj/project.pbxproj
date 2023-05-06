@@ -41,6 +41,10 @@
 		C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */; };
 		C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */; };
 		C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */; };
+		C2B8CDC52A067D9A008D0DE4 /* DownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */; };
+		C2B8CDC72A067DE0008D0DE4 /* DownloadStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */; };
+		C2B8CDC92A067DFE008D0DE4 /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */; };
+		C2B8CDCB2A067E9A008D0DE4 /* DownloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */; };
 		C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* APIError.swift */; };
 		C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */; };
 		C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */; };
@@ -93,6 +97,10 @@
 		C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationStatus.swift; sourceTree = "<group>"; };
 		C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadError.swift; sourceTree = "<group>"; };
+		C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadStatus.swift; sourceTree = "<group>"; };
+		C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
+		C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadType.swift; sourceTree = "<group>"; };
 		C2D3F16D2A05FB6600A8E9FF /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIClient.swift; sourceTree = "<group>"; };
 		C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -232,6 +240,10 @@
 			children = (
 				C2D3F16D2A05FB6600A8E9FF /* APIError.swift */,
 				C24FD0592A05F3F30063D18B /* AppError.swift */,
+				C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */,
+				C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */,
+				C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */,
+				C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */,
 				C2D3F17C2A05FC0C00A8E9FF /* APIResponse.swift */,
 				C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */,
 				C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */,
@@ -381,10 +393,12 @@
 				C24FD0412A05F0CC0063D18B /* BaseViewModel.swift in Sources */,
 				C24FD0622A05F45A0063D18B /* SongPlayerDateFormatter.swift in Sources */,
 				C2D3F17B2A05FB6600A8E9FF /* SongStore.swift in Sources */,
+				C2B8CDC72A067DE0008D0DE4 /* DownloadStatus.swift in Sources */,
 				C24FD05A2A05F3F30063D18B /* AppError.swift in Sources */,
 				C24FD0492A05F0CC0063D18B /* SongListViewModel.swift in Sources */,
 				C24FD04A2A05F0CC0063D18B /* SongListCoordinator.swift in Sources */,
 				C24FD0002A05EF830063D18B /* AppDelegate.swift in Sources */,
+				C2B8CDC52A067D9A008D0DE4 /* DownloadError.swift in Sources */,
 				C2D3F1832A05FE7100A8E9FF /* SongPlayerAPIResponse.swift in Sources */,
 				C24FD0422A05F0CC0063D18B /* BaseUICollectionViewCell.swift in Sources */,
 				C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */,
@@ -406,6 +420,8 @@
 				C2D3F17D2A05FC0C00A8E9FF /* APIResponse.swift in Sources */,
 				C24FD0442A05F0CC0063D18B /* MainViewController.swift in Sources */,
 				C24FD0462A05F0CC0063D18B /* MainViewModel.swift in Sources */,
+				C2B8CDCB2A067E9A008D0DE4 /* DownloadType.swift in Sources */,
+				C2B8CDC92A067DFE008D0DE4 /* DownloadItem.swift in Sources */,
 				C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */,
 				C24FD0472A05F0CC0063D18B /* SongListViewController.swift in Sources */,
 				C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */,
