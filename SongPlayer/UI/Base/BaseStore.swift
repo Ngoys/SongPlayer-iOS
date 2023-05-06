@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class BaseStore: NSObject {
+class BaseStore {
 
     //----------------------------------------
     // MARK: - Properties
@@ -9,6 +9,9 @@ class BaseStore: NSObject {
 
     lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
+
+        // Do custom date format decoding here, if needed
+
         return decoder
     }()
 

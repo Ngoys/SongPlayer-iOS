@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class BaseViewModel: NSObject {
+class BaseViewModel {
 
     //----------------------------------------
     // MARK: - Properties
