@@ -52,7 +52,7 @@ class AppCoordinator: BaseCoordinator {
     }
 
     //----------------------------------------
-    // MARK:- Internals
+    // MARK: - Internals
     //----------------------------------------
 
     private let mainViewController: MainViewController
@@ -63,14 +63,14 @@ class AppCoordinator: BaseCoordinator {
 }
 
 //----------------------------------------
-// MARK:- MainViewController Delegate
+// MARK: - MainViewController Delegate
 //----------------------------------------
 
 extension AppCoordinator: MainViewControllerDelegate {
 }
 
 //----------------------------------------
-// MARK:- SongListCoordinator Delegate
+// MARK: - SongListCoordinator Delegate
 //----------------------------------------
 
 extension AppCoordinator: SongListCoordinatorDelegate {

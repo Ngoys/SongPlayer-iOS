@@ -13,13 +13,13 @@ class SongListViewController: BaseViewController {
     }
 
     //----------------------------------------
-    // MARK:- View model
+    // MARK: - View model
     //----------------------------------------
 
     var viewModel: SongListViewModel!
 
     //----------------------------------------
-    // MARK:- Delegate
+    // MARK: - Delegate
     //----------------------------------------
 
     weak var delegate: SongListViewControllerDelegate?
@@ -29,6 +29,12 @@ class SongListViewController: BaseViewController {
     //----------------------------------------
 
     override func configureViews() {
+        ServiceContainer.container.resolve(type: SongStore.self).fetchSongs().sink { com in
+
+        } receiveValue: { value in
+            print(value)
+        }.store(in: &cancellables)
+
     }
 
     //----------------------------------------

@@ -1,11 +1,12 @@
-import UIKit
-import Combine
+import Foundation
 
-class BaseStore: NSObject {
+extension String {
 
     //----------------------------------------
     // MARK: - Properties
     //----------------------------------------
 
-    var cancellables: Set<AnyCancellable> = Set()
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
 }
