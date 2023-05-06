@@ -29,7 +29,7 @@ class SongListViewController: BaseViewController {
     //----------------------------------------
 
     override func configureViews() {
-        ServiceContainer.container.resolve(type: SongStore.self)!.fetchSongs().sink { com in
+        ServiceContainer.container.resolve(type: SongStore.self).fetchSongs().sink { com in
 
         } receiveValue: { value in
             print(value)
