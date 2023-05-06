@@ -18,9 +18,11 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     override func load() -> AnyPublisher<[SongPresentationModel], Error> {
         print("SongListViewModel - fetchSongs()")
         return songStore.fetchSongs() .map { songs in
+            print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
             let songPresentationModels = songs.map { song in
                 return SongPresentationModel(song: song)
             }
+
             self.songPresentationModelsSubject.send(songPresentationModels)
             return self.songPresentationModelsSubject.value
         }.eraseToAnyPublisher()
