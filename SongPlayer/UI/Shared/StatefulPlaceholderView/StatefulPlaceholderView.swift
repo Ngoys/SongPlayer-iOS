@@ -5,6 +5,7 @@ protocol StatefulPlaceholderViewDelegate: AnyObject {
 }
 
 class StatefulPlaceholderView: UIView {
+    
     //----------------------------------------
     // MARK: - Initialization
     //----------------------------------------

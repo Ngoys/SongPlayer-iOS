@@ -57,8 +57,8 @@ class SongListViewController: BaseViewController {
                 self.statefulPlaceholderView.bind(state)
 
                 switch state {
-                case .loaded(let songs):
-                    self.applySnapshot(songs: songs)
+                case .loaded(let songPresentationModels):
+                    self.applySnapshot(songPresentationModels: songPresentationModels)
 
                 default:
                     break
@@ -96,19 +96,19 @@ class SongListViewController: BaseViewController {
     // MARK: - UICollectionView data source
     //----------------------------------------
 
-    private func applySnapshot(songs: [Song], animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Song>()
+    private func applySnapshot(songPresentationModels: [SongPresentationModel], animatingDifferences: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SongPresentationModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(songs)
+        snapshot.appendItems(songPresentationModels)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     private lazy var dataSource = {
-        let dataSource = UICollectionViewDiffableDataSource<Section, Song>(
+        let dataSource = UICollectionViewDiffableDataSource<Section, SongPresentationModel>(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SongCell.self), for: indexPath) as! SongCell
-                let viewModel = SongCellViewModel(song: item)
+                let viewModel = SongCellViewModel(songPresentationModel: item)
                 cell.bindViewModel(viewModel)
 
                 return cell

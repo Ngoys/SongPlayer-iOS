@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class SongListViewModel: StatefulViewModel<[Song]> {
+class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
 
     //----------------------------------------
     // MARK: - Initialization
@@ -15,14 +15,22 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     // MARK: - Actions
     //----------------------------------------
 
-    override func load() -> AnyPublisher<[Song], Error> {
+    override func load() -> AnyPublisher<[SongPresentationModel], Error> {
         print("SongListViewModel - fetchSongs()")
-        return songStore.fetchSongs()
+        return songStore.fetchSongs() .map { songs in
+            let songPresentationModels = songs.map { song in
+                return SongPresentationModel(song: song)
+            }
+            self.songPresentationModelsSubject.send(songPresentationModels)
+            return self.songPresentationModelsSubject.value
+        }.eraseToAnyPublisher()
     }
 
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------
+
+    private let songPresentationModelsSubject = CurrentValueSubject<[SongPresentationModel], Never>([])
 
     private let songStore: SongStore
 }

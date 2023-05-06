@@ -20,8 +20,10 @@ class SongView: UIView {
 
     private func sharedInit() {
         let view = UINib(nibName: String(describing: SongView.self), bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
-        addSubview(view)
+
+        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+
         let constraints = [
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -38,6 +40,17 @@ class SongView: UIView {
     var titleText: String? {
         didSet {
             titleLabel.text = titleText
+        }
+    }
+    
+    var status: SongPresentationStatus? {
+        didSet {
+            //            switch status {
+            //            case .canPlay
+            //            case .canPause:
+            //            case .canDownload:
+            //            case .isDownloading(let progress):
+            //            }
         }
     }
     

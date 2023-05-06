@@ -8,6 +8,12 @@ class SongCell: BaseUICollectionViewCell {
     
     func bindViewModel(_ viewModel: SongCellViewModel) {
         songView.titleText = viewModel.titleText
+
+        viewModel.statePublisher
+            .sink { [weak self] state in
+                guard let self = self else { return }
+                self.songView.status = state.status
+            }.store(in: &cancellables)
     }
     
     //----------------------------------------

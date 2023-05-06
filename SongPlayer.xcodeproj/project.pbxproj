@@ -36,7 +36,10 @@
 		C291D4CF2A06251800540FF9 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C291D4CD2A06251800540FF9 /* SongView.xib */; };
 		C291D4D02A06251800540FF9 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4CE2A06251800540FF9 /* SongView.swift */; };
 		C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D32A06291100540FF9 /* UIView+Extension.swift */; };
-		C2D3F1752A05FB6600A8E9FF /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* ApiError.swift */; };
+		C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */; };
+		C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D72A062B3700540FF9 /* SongPresentationState.swift */; };
+		C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */; };
+		C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* APIError.swift */; };
 		C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */; };
 		C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */; };
 		C2D3F1792A05FB6600A8E9FF /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1712A05FB6600A8E9FF /* HTTPClient.swift */; };
@@ -83,7 +86,10 @@
 		C291D4CD2A06251800540FF9 /* SongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongView.xib; sourceTree = "<group>"; };
 		C291D4CE2A06251800540FF9 /* SongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		C291D4D32A06291100540FF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		C2D3F16D2A05FB6600A8E9FF /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationModel.swift; sourceTree = "<group>"; };
+		C291D4D72A062B3700540FF9 /* SongPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationState.swift; sourceTree = "<group>"; };
+		C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationStatus.swift; sourceTree = "<group>"; };
+		C2D3F16D2A05FB6600A8E9FF /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIClient.swift; sourceTree = "<group>"; };
 		C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		C2D3F1712A05FB6600A8E9FF /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -219,12 +225,15 @@
 		C24FD0582A05F3C30063D18B /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				C2D3F16D2A05FB6600A8E9FF /* ApiError.swift */,
+				C2D3F16D2A05FB6600A8E9FF /* APIError.swift */,
 				C24FD0592A05F3F30063D18B /* AppError.swift */,
 				C2D3F17C2A05FC0C00A8E9FF /* APIResponse.swift */,
 				C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */,
 				C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */,
 				C2D3F17E2A05FC4400A8E9FF /* Song.swift */,
+				C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */,
+				C291D4D72A062B3700540FF9 /* SongPresentationState.swift */,
+				C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -350,7 +359,9 @@
 			files = (
 				C2D3F17F2A05FC4400A8E9FF /* Song.swift in Sources */,
 				C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */,
+				C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */,
 				C24FD02F2A05F0010063D18B /* AppCoordinator.swift in Sources */,
+				C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */,
 				C2D3F1792A05FB6600A8E9FF /* HTTPClient.swift in Sources */,
 				C291D4D02A06251800540FF9 /* SongView.swift in Sources */,
 				C24FD0412A05F0CC0063D18B /* BaseViewModel.swift in Sources */,
@@ -363,6 +374,7 @@
 				C2D3F1832A05FE7100A8E9FF /* SongPlayerAPIResponse.swift in Sources */,
 				C24FD0422A05F0CC0063D18B /* BaseUICollectionViewCell.swift in Sources */,
 				C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */,
+				C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */,
 				C24FD0602A05F45A0063D18B /* AppConstant.swift in Sources */,
 				C24FD04F2A05F28A0063D18B /* StatefulPlaceholderView.swift in Sources */,
 				C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */,
@@ -372,7 +384,7 @@
 				C24FD0432A05F0CC0063D18B /* BaseCoordinator.swift in Sources */,
 				C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */,
 				C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */,
-				C2D3F1752A05FB6600A8E9FF /* ApiError.swift in Sources */,
+				C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */,
 				C24FD0512A05F28A0063D18B /* StatefulViewModel.swift in Sources */,
 				C24FD0402A05F0CC0063D18B /* BaseStore.swift in Sources */,
 				C24FD03F2A05F0CC0063D18B /* BaseViewController.swift in Sources */,
