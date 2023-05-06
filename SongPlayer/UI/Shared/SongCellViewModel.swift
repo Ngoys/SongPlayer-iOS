@@ -1,27 +1,27 @@
 import Foundation
-import UIKit
+import Combine
 
 class SongCellViewModel {
 
     //----------------------------------------
     // MARK: - Initialization
     //----------------------------------------
-    
+
     init(song: Song) {
         self.song = song
     }
-    
+
     //----------------------------------------
-    // MARK: - Presentation
+    // MARK: - Properties
     //----------------------------------------
 
     var titleText: String? {
-        return self.song.name
+        return song.name
     }
 
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------
-    
+
     private let song: Song
 }

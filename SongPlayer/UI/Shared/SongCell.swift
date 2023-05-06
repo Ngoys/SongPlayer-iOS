@@ -7,7 +7,7 @@ class SongCell: BaseUICollectionViewCell {
     //----------------------------------------
     
     func bindViewModel(_ viewModel: SongCellViewModel) {
-        titleLabel.text = viewModel.titleText
+        songView.titleText = viewModel.titleText
     }
     
     //----------------------------------------
@@ -15,14 +15,13 @@ class SongCell: BaseUICollectionViewCell {
     //----------------------------------------
     
     static func sizeThatFits(width: CGFloat) -> CGSize {
-        return CGSize(width: width, height: 48)
+        let heightRatio = 304.0 / 130.0
+        return CGSize(width: width, height: width / heightRatio)
     }
     
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------
 
-    @IBOutlet private var titleLabel: UILabel!
-    
-    @IBOutlet private var containerView: UIView!
+    @IBOutlet private var songView: SongView!
 }

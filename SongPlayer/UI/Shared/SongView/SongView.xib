@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongView" customModule="SongPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="titleLabel" destination="jPI-Ve-hSg" id="6Ob-Dz-Z9s"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="314" height="154"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXf-HB-LH2">
+                    <rect key="frame" x="0.0" y="0.0" width="314" height="154"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPI-Ve-hSg">
+                            <rect key="frame" x="12" y="12" width="290" height="30"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="jPI-Ve-hSg" firstAttribute="leading" secondItem="qXf-HB-LH2" secondAttribute="leading" constant="12" id="NGc-H4-MkC"/>
+                        <constraint firstAttribute="trailing" secondItem="jPI-Ve-hSg" secondAttribute="trailing" constant="12" id="OzE-pf-YNy"/>
+                        <constraint firstItem="jPI-Ve-hSg" firstAttribute="top" secondItem="qXf-HB-LH2" secondAttribute="top" constant="12" id="eEp-xm-ba8"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jPI-Ve-hSg" secondAttribute="bottom" constant="12" id="nOb-4a-UYr"/>
+                        <constraint firstAttribute="width" secondItem="qXf-HB-LH2" secondAttribute="height" multiplier="304:130" priority="999" id="oMP-w0-4Om"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="BunkerColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qXf-HB-LH2" secondAttribute="bottom" id="Box-I1-lD1"/>
+                <constraint firstItem="qXf-HB-LH2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="is8-8k-zJQ"/>
+                <constraint firstAttribute="trailing" secondItem="qXf-HB-LH2" secondAttribute="trailing" id="vXb-p2-QjY"/>
+                <constraint firstItem="qXf-HB-LH2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xIe-UO-dCD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-24.637681159420293" y="-176.78571428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BunkerColor">
+            <color red="0.15686274509803921" green="0.17254901960784313" blue="0.20000000000000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
