@@ -35,6 +35,7 @@
 		C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FD0642A05F5380063D18B /* String+Extension.swift */; };
 		C291D4CF2A06251800540FF9 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C291D4CD2A06251800540FF9 /* SongView.xib */; };
 		C291D4D02A06251800540FF9 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4CE2A06251800540FF9 /* SongView.swift */; };
+		C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D32A06291100540FF9 /* UIView+Extension.swift */; };
 		C2D3F1752A05FB6600A8E9FF /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* ApiError.swift */; };
 		C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */; };
 		C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */; };
@@ -81,6 +82,7 @@
 		C24FD0662A05F6080063D18B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C291D4CD2A06251800540FF9 /* SongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongView.xib; sourceTree = "<group>"; };
 		C291D4CE2A06251800540FF9 /* SongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		C291D4D32A06291100540FF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C2D3F16D2A05FB6600A8E9FF /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIClient.swift; sourceTree = "<group>"; };
 		C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				C24FD05D2A05F45A0063D18B /* Array+Extension.swift */,
 				C24FD05E2A05F45A0063D18B /* SongPlayerDateFormatter.swift */,
 				C24FD05F2A05F45A0063D18B /* URLRequest+Extension.swift */,
+				C291D4D32A06291100540FF9 /* UIView+Extension.swift */,
 				C24FD0642A05F5380063D18B /* String+Extension.swift */,
 			);
 			path = Utilities;
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D3F17F2A05FC4400A8E9FF /* Song.swift in Sources */,
+				C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */,
 				C24FD02F2A05F0010063D18B /* AppCoordinator.swift in Sources */,
 				C2D3F1792A05FB6600A8E9FF /* HTTPClient.swift in Sources */,
 				C291D4D02A06251800540FF9 /* SongView.swift in Sources */,

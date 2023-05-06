@@ -28,7 +28,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="BunkerColor"/>
                     <constraints>
                         <constraint firstItem="jPI-Ve-hSg" firstAttribute="leading" secondItem="qXf-HB-LH2" secondAttribute="leading" constant="12" id="NGc-H4-MkC"/>
                         <constraint firstAttribute="trailing" secondItem="jPI-Ve-hSg" secondAttribute="trailing" constant="12" id="OzE-pf-YNy"/>
@@ -36,9 +36,14 @@
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jPI-Ve-hSg" secondAttribute="bottom" constant="12" id="nOb-4a-UYr"/>
                         <constraint firstAttribute="width" secondItem="qXf-HB-LH2" secondAttribute="height" multiplier="304:130" priority="999" id="oMP-w0-4Om"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="BunkerColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="qXf-HB-LH2" secondAttribute="bottom" id="Box-I1-lD1"/>
                 <constraint firstItem="qXf-HB-LH2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="is8-8k-zJQ"/>
