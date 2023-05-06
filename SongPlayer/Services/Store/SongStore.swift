@@ -7,8 +7,9 @@ class SongStore: BaseStore {
     // MARK: - Initialization
     //----------------------------------------
 
-    init(apiClient: APIClient) {
+    init(apiClient: APIClient, coreDataStore: CoreDataStore) {
         self.apiClient = apiClient
+        self.coreDataStore = coreDataStore
     }
 
     //----------------------------------------
@@ -23,6 +24,13 @@ class SongStore: BaseStore {
                 let decodedModel = try self.decoder.decode(SongPlayerAPIJSON<[Song]>.self, from: apiResponse.data)
                 return decodedModel.data
             }
+            .map { [weak self] songs in
+                guard let self = self else { return songs }
+                songs.forEach { song in
+                    self.coreDataStore.createOrUpdateSong(song: song)
+                }
+                return songs
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 
@@ -34,4 +42,6 @@ class SongStore: BaseStore {
     //----------------------------------------
 
     private let apiClient: APIClient
+
+    private let coreDataStore: CoreDataStore
 }
