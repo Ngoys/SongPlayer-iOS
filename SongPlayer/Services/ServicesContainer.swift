@@ -13,6 +13,8 @@ class ServiceContainer {
     //----------------------------------------
 
     static var container: ServiceContainer {
+        // https://medium.com/sahibinden-technology/dependency-injection-in-swift-11756a07a064
+
         let container = ServiceContainer()
 
         container.register(type: HTTPClient.self, service: HTTPClient())
