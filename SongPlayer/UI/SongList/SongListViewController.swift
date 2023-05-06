@@ -111,6 +111,24 @@ class SongListViewController: BaseViewController {
                 let viewModel = SongCellViewModel(songPresentationModel: item)
                 cell.bindViewModel(viewModel)
 
+                cell.playButtonDidTapSubject
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        self.viewModel.play(id: item.song.id)
+                    }.store(in: &cell.cancellables)
+
+                cell.pauseButtonDidTapSubject
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        self.viewModel.pause()
+                    }.store(in: &cell.cancellables)
+
+                cell.downloadButtonDidTapSubject
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        self.viewModel.download(id: item.song.id)
+                    }.store(in: &cell.cancellables)
+
                 return cell
             })
         return dataSource
@@ -132,5 +150,6 @@ class SongListViewController: BaseViewController {
 extension SongListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // No action
     }
 }

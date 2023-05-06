@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class SongCell: BaseUICollectionViewCell {
     
@@ -14,8 +15,36 @@ class SongCell: BaseUICollectionViewCell {
                 guard let self = self else { return }
                 self.songView.status = state.status
             }.store(in: &cancellables)
+
+        songView.playButtonDidTapSubject
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.playButtonDidTapSubject.send(())
+            }.store(in: &cancellables)
+
+        songView.pauseButtonDidTapSubject
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.pauseButtonDidTapSubject.send(())
+            }.store(in: &cancellables)
+
+        songView.downloadButtonDidTapSubject
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.downloadButtonDidTapSubject.send(())
+            }.store(in: &cancellables)
     }
-    
+
+    //----------------------------------------
+    // MARK: - Properties
+    //----------------------------------------
+
+    let playButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
+    let pauseButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
+    let downloadButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
     //----------------------------------------
     // MARK: - Sizing
     //----------------------------------------

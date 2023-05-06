@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class SongView: UIView {
     
@@ -37,6 +38,12 @@ class SongView: UIView {
     // MARK: - Properties
     //----------------------------------------
 
+    let playButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
+    let pauseButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
+    let downloadButtonDidTapSubject = PassthroughSubject<Void, Never>()
+
     var titleText: String? {
         didSet {
             titleLabel.text = titleText
@@ -45,12 +52,30 @@ class SongView: UIView {
     
     var status: SongPresentationStatus? {
         didSet {
-            //            switch status {
-            //            case .canPlay
-            //            case .canPause:
-            //            case .canDownload:
-            //            case .isDownloading(let progress):
-            //            }
+
+            switch status {
+            case .canPlay:
+                playPauseImageView.isHidden = false
+                downloadImageView.isHidden = true
+                playPauseImageView.image = UIImage(named: "ic-play")
+
+            case .canPause:
+                playPauseImageView.isHidden = false
+                downloadImageView.isHidden = true
+                playPauseImageView.image = UIImage(named: "ic-pause")
+
+            case .canDownload:
+                playPauseImageView.isHidden = true
+                downloadImageView.isHidden = false
+                downloadImageView.image = UIImage(named: "ic-download")
+
+            case .isDownloading(let progress):
+                playPauseImageView.isHidden = true
+                downloadImageView.isHidden = true
+
+            default:
+                break
+            }
         }
     }
 
@@ -76,8 +101,34 @@ class SongView: UIView {
     }
 
     //----------------------------------------
-    // MARK: - Outlets
+    // MARK: - Actions
     //----------------------------------------
 
+    @IBAction func actionButtonDidTap(_ sender: Any) {
+        switch status {
+        case .canPause:
+            pauseButtonDidTapSubject.send(())
+
+        case .canPlay:
+            playButtonDidTapSubject.send(())
+
+        case .canDownload:
+            downloadButtonDidTapSubject.send(())
+
+        default:
+            break
+        }
+    }
+
+    //----------------------------------------
+    // MARK: - Internals
+    //----------------------------------------
+
+    @IBOutlet private var playPauseImageView: UIImageView!
+
+    @IBOutlet private var downloadImageView: UIImageView!
+
     @IBOutlet private var titleLabel: UILabel!
+
+    @IBOutlet private var actionButton: UIButton!
 }

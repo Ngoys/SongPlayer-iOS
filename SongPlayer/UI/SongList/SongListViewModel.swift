@@ -17,7 +17,7 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
 
     override func load() -> AnyPublisher<[SongPresentationModel], Error> {
         print("SongListViewModel - fetchSongs()")
-        return songStore.fetchSongs() .map { songs in
+        return songStore.fetchSongs().map { songs in
             print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
             let songPresentationModels = songs.map { song in
                 return SongPresentationModel(song: song)
@@ -26,6 +26,24 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
             self.songPresentationModelsSubject.send(songPresentationModels)
             return self.songPresentationModelsSubject.value
         }.eraseToAnyPublisher()
+    }
+
+    func download(id: String) {
+        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
+        var stateClone = songPresentationModel.state.value
+        stateClone.status = .canPlay
+        songPresentationModel.state.send(stateClone)
+    }
+
+    func play(id: String) {
+        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
+
+        var stateClone = songPresentationModel.state.value
+        stateClone.status = .canPause
+        songPresentationModel.state.send(stateClone)
+    }
+
+    func pause() {
     }
 
     //----------------------------------------
