@@ -4,12 +4,12 @@ import Combine
 class SongListViewModel: BaseViewModel {
 
     //----------------------------------------
-    // MARK:- Initialization
+    // MARK: - Initialization
     //----------------------------------------
 
 
     //----------------------------------------
-    // MARK:- Internals
+    // MARK: - Internals
     //----------------------------------------
 
 }

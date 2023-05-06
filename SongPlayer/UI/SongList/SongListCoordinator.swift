@@ -7,7 +7,7 @@ protocol SongListCoordinatorDelegate: NSObjectProtocol {
 class SongListCoordinator: BaseCoordinator {
 
     //----------------------------------------
-    // MARK:- Initialization
+    // MARK: - Initialization
     //----------------------------------------
 
     init(songListViewController: SongListViewController) {
@@ -17,13 +17,13 @@ class SongListCoordinator: BaseCoordinator {
     }
 
     //----------------------------------------
-    // MARK:- Delegate
+    // MARK: - Delegate
     //----------------------------------------
 
     weak var delegate: SongListCoordinatorDelegate?
 
     //----------------------------------------
-    // MARK:- Starting flows
+    // MARK: - Starting flows
     //----------------------------------------
 
     func start() {
@@ -31,14 +31,14 @@ class SongListCoordinator: BaseCoordinator {
     }
 
     //----------------------------------------
-    // MARK:- Internals
+    // MARK: - Internals
     //----------------------------------------
 
     private let songListViewController: SongListViewController
 }
 
 //----------------------------------------
-// MARK:- SongListViewController delegate
+// MARK: - SongListViewController delegate
 //----------------------------------------
 
 extension SongListCoordinator: SongListViewControllerDelegate {

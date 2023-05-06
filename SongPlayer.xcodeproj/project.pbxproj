@@ -162,9 +162,9 @@
 		C24FD04B2A05F28A0063D18B /* StatefulPlaceholderView */ = {
 			isa = PBXGroup;
 			children = (
+				C24FD04E2A05F28A0063D18B /* StatefulViewModel.swift */,
 				C24FD04D2A05F28A0063D18B /* StatefulPlaceholderView.xib */,
 				C24FD04C2A05F28A0063D18B /* StatefulPlaceholderView.swift */,
-				C24FD04E2A05F28A0063D18B /* StatefulViewModel.swift */,
 			);
 			path = StatefulPlaceholderView;
 			sourceTree = "<group>";
