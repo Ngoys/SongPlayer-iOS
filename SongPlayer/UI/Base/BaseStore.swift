@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class BaseStore {
+class BaseStore: NSObject {
 
     //----------------------------------------
     // MARK: - Properties

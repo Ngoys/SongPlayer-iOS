@@ -30,17 +30,17 @@ class DownloadStore: BaseStore {
         var downloadItem: DownloadItem?
         
         switch downloadType {
-        case .mp3:
-            downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL)
+        case .mp3, .jpg, .png:
+            downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
 
         case .zip:
-            downloadItem = zipDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL)
+            downloadItem = zipDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
 
         case .pdf:
-            downloadItem = pdfDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL)
+            downloadItem = pdfDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
 
-        case .video:
-            downloadItem = videoDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL)
+        case .mp4:
+            downloadItem = videoDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadType: downloadType)
         }
 
         guard let downloadItem = downloadItem else {

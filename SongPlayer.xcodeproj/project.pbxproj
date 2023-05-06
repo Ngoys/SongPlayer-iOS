@@ -51,6 +51,8 @@
 		C2B8CDD52A0680B7008D0DE4 /* BasicDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDD22A0680B7008D0DE4 /* BasicDownloadManager.swift */; };
 		C2B8CDD62A0680B7008D0DE4 /* PDFDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDD32A0680B7008D0DE4 /* PDFDownloadManager.swift */; };
 		C2B8CDD72A0680B7008D0DE4 /* VideoDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDD42A0680B7008D0DE4 /* VideoDownloadManager.swift */; };
+		C2B8CDD92A068237008D0DE4 /* BaseDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDD82A068237008D0DE4 /* BaseDownloadManager.swift */; };
+		C2B8CDDB2A0682D1008D0DE4 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */; };
 		C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16D2A05FB6600A8E9FF /* APIError.swift */; };
 		C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */; };
 		C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */; };
@@ -113,6 +115,8 @@
 		C2B8CDD22A0680B7008D0DE4 /* BasicDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicDownloadManager.swift; sourceTree = "<group>"; };
 		C2B8CDD32A0680B7008D0DE4 /* PDFDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDownloadManager.swift; sourceTree = "<group>"; };
 		C2B8CDD42A0680B7008D0DE4 /* VideoDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDownloadManager.swift; sourceTree = "<group>"; };
+		C2B8CDD82A068237008D0DE4 /* BaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDownloadManager.swift; sourceTree = "<group>"; };
+		C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 		C2D3F16D2A05FB6600A8E9FF /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerAPIClient.swift; sourceTree = "<group>"; };
 		C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 				C24FD0322A05F0CC0063D18B /* BaseStore.swift */,
 				C24FD0332A05F0CC0063D18B /* BaseViewModel.swift */,
 				C24FD0312A05F0CC0063D18B /* BaseViewController.swift */,
+				C2B8CDD82A068237008D0DE4 /* BaseDownloadManager.swift */,
 				C24FD0342A05F0CC0063D18B /* BaseUICollectionViewCell.swift */,
 			);
 			path = Base;
@@ -256,6 +261,7 @@
 				C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */,
 				C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */,
 				C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */,
+				C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */,
 				C2D3F17C2A05FC0C00A8E9FF /* APIResponse.swift */,
 				C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */,
 				C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */,
@@ -429,10 +435,12 @@
 				C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */,
 				C2B8CDCF2A068023008D0DE4 /* DownloadManager.swift in Sources */,
 				C2B8CDD52A0680B7008D0DE4 /* BasicDownloadManager.swift in Sources */,
+				C2B8CDDB2A0682D1008D0DE4 /* DownloadOperation.swift in Sources */,
 				C2D3F17A2A05FB6600A8E9FF /* ServicesContainer.swift in Sources */,
 				C24FD0612A05F45A0063D18B /* Array+Extension.swift in Sources */,
 				C2D3F1892A060CFE00A8E9FF /* SongCellViewModel.swift in Sources */,
 				C2B8CDD12A06804C008D0DE4 /* ZipDownloadManager.swift in Sources */,
+				C2B8CDD92A068237008D0DE4 /* BaseDownloadManager.swift in Sources */,
 				C24FD0432A05F0CC0063D18B /* BaseCoordinator.swift in Sources */,
 				C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */,
 				C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */,
@@ -591,6 +599,7 @@
 				DEVELOPMENT_TEAM = 7YFC525745;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -620,6 +629,7 @@
 				DEVELOPMENT_TEAM = 7YFC525745;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

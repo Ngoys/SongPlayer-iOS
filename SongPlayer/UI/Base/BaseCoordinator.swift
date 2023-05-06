@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class BaseCoordinator {
+class BaseCoordinator: NSObject {
 
     //----------------------------------------
     // MARK: - Actions
