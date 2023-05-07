@@ -15,15 +15,19 @@ class DownloadStore: BaseStore {
     }
 
     //----------------------------------------
+    // MARK: - Properties
+    //----------------------------------------
+
+    var downloadingItemsPublisher: AnyPublisher<[DownloadItem], Never> {
+        return downloadingItemsSubject.eraseToAnyPublisher()
+    }
+
+    //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
 
-    func getDownloadingItem(contentIdentifier: String) -> DownloadItem? {
-        return downloadingItemsSubject.value.first(where: { $0.contentIdentifier == contentIdentifier })
-    }
-
     func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
-        if let downloadItem = getDownloadingItem(contentIdentifier: contentIdentifier) {
+        if let downloadItem = downloadingItemsSubject.value.first(where: { $0.contentIdentifier == contentIdentifier }) {
             return downloadItem
         }
 
@@ -51,7 +55,26 @@ class DownloadStore: BaseStore {
         downloadingItems.append(downloadItem)
         downloadingItemsSubject.send(downloadingItems)
 
+        handleDownloadItemStatusChange(downloadItem: downloadItem)
+
         return downloadItem
+    }
+
+    private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
+        downloadItem.statusDidChange
+            .sink(receiveValue: { [weak self] status in
+                guard let self = self else { return }
+
+                switch status {
+                case .downloaded(_), .error(_):
+                    // Remove downloaded items and error items
+                    self.downloadingItemsSubject.value.removeAll(where: { $0.contentIdentifier == downloadItem.contentIdentifier })
+
+                default:
+                    break
+                }
+
+            }).store(in: &cancellables)
     }
 
     //----------------------------------------

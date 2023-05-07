@@ -143,6 +143,7 @@ extension BasicDownloadManager: URLSessionDownloadDelegate {
             case 512:
                 downloadOperation.downloadStatusSubject.send(.error(downloadError: .diskNotEnoughSpace))
 
+                // check for no internet error TODO
             default:
                 downloadOperation.downloadStatusSubject.send(.error(downloadError: downloadError))
             }
