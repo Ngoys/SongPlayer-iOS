@@ -12,6 +12,44 @@ class SongListViewModel: StatefulViewModel<[Song]> {
         self.downloadStore = downloadStore
         self.coreDataStore = coreDataStore
         self.audioPlayerService = audioPlayerService
+
+        super.init()
+
+        //----------------------------------------
+        // MARK: - Start observing data
+        //----------------------------------------
+
+        audioPlayerService.audioPlayerStateDidChangePublisher
+            .sink { [weak self] audioPlayer in
+                guard let self = self else { return }
+                guard let song = self.songsSubject.value.first(where: { $0.id == audioPlayer?.currentAudioContent?.audioContentIdentifier }) else { return }
+
+                var uiStateClone = song.uiState.value
+
+                if audioPlayer?.isLoading == true {
+                    // We can set the uiStateClone attribute, then the SongView will update automatically
+                    // For example, set uiStateClone.status = .isLoading to show a activity indicator in the SongView UI
+                } else if audioPlayer?.isPlaying == true {
+                    uiStateClone.status = .canPause
+                } else if audioPlayer?.isPlaying == false {
+                    uiStateClone.status = .canPlay
+                }
+
+                song.uiState.send(uiStateClone)
+            }.store(in: &cancellables)
+
+        songsSubject
+            .sink { [weak self] songs in
+                guard let self = self else { return }
+                songs.forEach { song in
+                    // Everytime when there is a new song being fetched from API, we need to check if it is being downloaded
+                    // If there is existing download triggered by other View Controller page,
+                    // Update the uiState accordingly
+                    if let downloadItem = self.downloadStore.getDownloadingItem(contentIdentifier: song.id) {
+                        self.handleDownloadItemStatusChange(downloadItem: downloadItem)
+                    }
+                }
+            }.store(in: &cancellables)
     }
 
     //----------------------------------------

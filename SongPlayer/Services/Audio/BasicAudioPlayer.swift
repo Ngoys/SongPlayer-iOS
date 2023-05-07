@@ -49,7 +49,7 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
         }
 
         set {
-            // Do nothing if setting the current item again.
+            // Do nothing if it is the same _currentAudioContent.
             if _currentAudioContent === newValue {
                 return
             }
@@ -186,7 +186,6 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
             self.avPlayer?.pause()
         } else {
             self.disposeAudioPlayer()
-            // When disposing, we don't get a signal from the player about playback state changes.
             audioPlayerStateDidChangeSubject.send(self)
         }
 
