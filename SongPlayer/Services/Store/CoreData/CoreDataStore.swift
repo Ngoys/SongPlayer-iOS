@@ -110,7 +110,7 @@ class CoreDataStore {
         }
     }
 
-    private func saveInMainContext() {
+    func saveInMainContext() {
         guard mainContext.hasChanges else { return }
         do {
             try mainContext.save()
@@ -120,7 +120,7 @@ class CoreDataStore {
         }
     }
 
-    private  func saveInBackgroundContext() {
+    func saveInBackgroundContext() {
         guard backgroundContext.hasChanges else { return }
         do {
             try backgroundContext.save()

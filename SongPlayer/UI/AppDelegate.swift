@@ -23,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        let coreDataStore = ServiceContainer.container.resolve(type: CoreDataStore.self)
+        coreDataStore.saveInMainContext()
+    }
+
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------

@@ -161,7 +161,7 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                         self.pause(forceDispose: true)
 
                     default:
-                        print("BasicAudioPlayer - AVPlayer.status - unknown")
+                        print("BasicAudioPlayer - AVPlayerItem.status - unknown")
                     }
                 })
 
