@@ -13,7 +13,7 @@ class Song: Codable, Hashable {
         self.audioURL = audioURL
         self.uiState = CurrentValueSubject<SongUIState, Never>(SongUIState())
 
-        // Trigger didSet on init()
+        // Trigger localFilePath didSet on init()
         // https://stackoverflow.com/a/33979852/18209126
         defer {
             self.localFilePath = localFilePath
@@ -99,5 +99,24 @@ extension Song: DownloadableContent {
 
     var downloadFileFormat: DownloadFileFormat {
         return .mp3
+    }
+}
+
+//----------------------------------------
+// MARK: - AudioContent protocols
+//----------------------------------------
+
+extension Song: AudioContent {
+
+    var audioContentIdentifier: String {
+        return self.id
+    }
+    
+    var audioContentURL: URL? {
+        return URL(string: self.localFilePath ?? "")
+    }
+
+    var audioContentTitle: String? {
+        return self.name
     }
 }

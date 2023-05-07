@@ -70,6 +70,14 @@
 		C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1842A060CFE00A8E9FF /* SongCell.swift */; };
 		C2D3F1882A060CFE00A8E9FF /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D3F1852A060CFE00A8E9FF /* SongCell.xib */; };
 		C2D3F1892A060CFE00A8E9FF /* SongCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3F1862A060CFE00A8E9FF /* SongCellViewModel.swift */; };
+		C2D405032A073AB50013B445 /* AudioContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405022A073AB50013B445 /* AudioContent.swift */; };
+		C2D405072A073B010013B445 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405062A073B010013B445 /* AudioPlayer.swift */; };
+		C2D4050A2A073CFB0013B445 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405092A073CFB0013B445 /* AudioPlayerService.swift */; };
+		C2D4050D2A0753680013B445 /* NowPlayingInfoCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D4050C2A0753680013B445 /* NowPlayingInfoCenterManager.swift */; };
+		C2D4050F2A0753A10013B445 /* RemoteCommandCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D4050E2A0753A10013B445 /* RemoteCommandCenterManager.swift */; };
+		C2D405112A0755B40013B445 /* BasicAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405102A0755B40013B445 /* BasicAudioPlayer.swift */; };
+		C2D405132A0755BB0013B445 /* LiveStreamAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */; };
+		C2D405152A075A3C0013B445 /* AudioContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405142A075A3C0013B445 /* AudioContentType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +146,14 @@
 		C2D3F1842A060CFE00A8E9FF /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		C2D3F1852A060CFE00A8E9FF /* SongCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
 		C2D3F1862A060CFE00A8E9FF /* SongCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCellViewModel.swift; sourceTree = "<group>"; };
+		C2D405022A073AB50013B445 /* AudioContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContent.swift; sourceTree = "<group>"; };
+		C2D405062A073B010013B445 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		C2D405092A073CFB0013B445 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
+		C2D4050C2A0753680013B445 /* NowPlayingInfoCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingInfoCenterManager.swift; sourceTree = "<group>"; };
+		C2D4050E2A0753A10013B445 /* RemoteCommandCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCommandCenterManager.swift; sourceTree = "<group>"; };
+		C2D405102A0755B40013B445 /* BasicAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioPlayer.swift; sourceTree = "<group>"; };
+		C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamAudioPlayer.swift; sourceTree = "<group>"; };
+		C2D405142A075A3C0013B445 /* AudioContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContentType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,15 +285,11 @@
 				C2D3F17C2A05FC0C00A8E9FF /* APIResponse.swift */,
 				C2D3F1822A05FE7100A8E9FF /* SongPlayerAPIResponse.swift */,
 				C2D3F1802A05FC8900A8E9FF /* SongPlayerAPIJSON.swift */,
-				C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */,
-				C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */,
-				C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */,
-				C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */,
-				C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */,
-				C2B8CDDC2A0688C8008D0DE4 /* DownloadableContent.swift */,
 				C2D3F17E2A05FC4400A8E9FF /* Song.swift */,
 				C291D4D72A062B3700540FF9 /* SongPresentationState.swift */,
 				C291D4D92A062B4D00540FF9 /* SongStatus.swift */,
+				C2D405012A073AA80013B445 /* Audio */,
+				C2D405002A073A9C0013B445 /* Download */,
 				C2B8CDEC2A06F5FB008D0DE4 /* CoreDataModal */,
 			);
 			path = Modal;
@@ -352,6 +364,7 @@
 				C2D3F16F2A05FB6600A8E9FF /* APIClient.swift */,
 				C2D3F16E2A05FB6600A8E9FF /* SongPlayerAPIClient.swift */,
 				C2D3F1712A05FB6600A8E9FF /* HTTPClient.swift */,
+				C2D4050B2A073D020013B445 /* Audio */,
 				C2D3F1732A05FB6600A8E9FF /* Store */,
 			);
 			path = Services;
@@ -365,6 +378,41 @@
 				C2B8CDE22A06F3AB008D0DE4 /* Download */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		C2D405002A073A9C0013B445 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */,
+				C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */,
+				C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */,
+				C2B8CDCA2A067E9A008D0DE4 /* DownloadType.swift */,
+				C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */,
+				C2B8CDDC2A0688C8008D0DE4 /* DownloadableContent.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		C2D405012A073AA80013B445 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C2D405022A073AB50013B445 /* AudioContent.swift */,
+				C2D405062A073B010013B445 /* AudioPlayer.swift */,
+				C2D405142A075A3C0013B445 /* AudioContentType.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		C2D4050B2A073D020013B445 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C2D405092A073CFB0013B445 /* AudioPlayerService.swift */,
+				C2D405102A0755B40013B445 /* BasicAudioPlayer.swift */,
+				C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */,
+				C2D4050C2A0753680013B445 /* NowPlayingInfoCenterManager.swift */,
+				C2D4050E2A0753A10013B445 /* RemoteCommandCenterManager.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +496,8 @@
 				C291D4DA2A062B4D00540FF9 /* SongStatus.swift in Sources */,
 				C24FD02F2A05F0010063D18B /* AppCoordinator.swift in Sources */,
 				C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */,
+				C2D405072A073B010013B445 /* AudioPlayer.swift in Sources */,
+				C2D4050F2A0753A10013B445 /* RemoteCommandCenterManager.swift in Sources */,
 				C2D3F1792A05FB6600A8E9FF /* HTTPClient.swift in Sources */,
 				C2B8CDDD2A0688C8008D0DE4 /* DownloadableContent.swift in Sources */,
 				C291D4D02A06251800540FF9 /* SongView.swift in Sources */,
@@ -455,8 +505,11 @@
 				C24FD0622A05F45A0063D18B /* SongPlayerDateFormatter.swift in Sources */,
 				C2B8CDCD2A067F14008D0DE4 /* DownloadStore.swift in Sources */,
 				C2D3F17B2A05FB6600A8E9FF /* SongStore.swift in Sources */,
+				C2D405112A0755B40013B445 /* BasicAudioPlayer.swift in Sources */,
 				C2B8CDC72A067DE0008D0DE4 /* DownloadStatus.swift in Sources */,
+				C2D405152A075A3C0013B445 /* AudioContentType.swift in Sources */,
 				C24FD05A2A05F3F30063D18B /* AppError.swift in Sources */,
+				C2D4050D2A0753680013B445 /* NowPlayingInfoCenterManager.swift in Sources */,
 				C24FD0492A05F0CC0063D18B /* SongListViewModel.swift in Sources */,
 				C2B8CDE02A06F3A7008D0DE4 /* CoreDataStack.swift in Sources */,
 				C24FD04A2A05F0CC0063D18B /* SongListCoordinator.swift in Sources */,
@@ -475,13 +528,16 @@
 				C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */,
 				C2B8CDCF2A068023008D0DE4 /* DownloadManager.swift in Sources */,
 				C2B8CDD52A0680B7008D0DE4 /* BasicDownloadManager.swift in Sources */,
+				C2D405132A0755BB0013B445 /* LiveStreamAudioPlayer.swift in Sources */,
 				C2B8CDDB2A0682D1008D0DE4 /* DownloadOperation.swift in Sources */,
 				C2D3F17A2A05FB6600A8E9FF /* ServicesContainer.swift in Sources */,
 				C24FD0612A05F45A0063D18B /* Array+Extension.swift in Sources */,
 				C2D3F1892A060CFE00A8E9FF /* SongCellViewModel.swift in Sources */,
 				C2B8CDD12A06804C008D0DE4 /* ZipDownloadManager.swift in Sources */,
+				C2D405032A073AB50013B445 /* AudioContent.swift in Sources */,
 				C2B8CDD92A068237008D0DE4 /* BaseDownloadManager.swift in Sources */,
 				C24FD0432A05F0CC0063D18B /* BaseCoordinator.swift in Sources */,
+				C2D4050A2A073CFB0013B445 /* AudioPlayerService.swift in Sources */,
 				C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */,
 				C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */,
 				C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */,
