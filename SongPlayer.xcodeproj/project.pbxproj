@@ -78,6 +78,7 @@
 		C2D405112A0755B40013B445 /* BasicAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405102A0755B40013B445 /* BasicAudioPlayer.swift */; };
 		C2D405132A0755BB0013B445 /* LiveStreamAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */; };
 		C2D405152A075A3C0013B445 /* AudioContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405142A075A3C0013B445 /* AudioContentType.swift */; };
+		C2D405172A0789C80013B445 /* AlertDialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405162A0789C80013B445 /* AlertDialogModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		C2D405102A0755B40013B445 /* BasicAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioPlayer.swift; sourceTree = "<group>"; };
 		C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamAudioPlayer.swift; sourceTree = "<group>"; };
 		C2D405142A075A3C0013B445 /* AudioContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContentType.swift; sourceTree = "<group>"; };
+		C2D405162A0789C80013B445 /* AlertDialogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDialogModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +282,7 @@
 		C24FD0582A05F3C30063D18B /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				C2D405162A0789C80013B445 /* AlertDialogModel.swift */,
 				C2D3F16D2A05FB6600A8E9FF /* APIError.swift */,
 				C24FD0592A05F3F30063D18B /* AppError.swift */,
 				C2D3F17C2A05FC0C00A8E9FF /* APIResponse.swift */,
@@ -528,6 +531,7 @@
 				C2D3F1762A05FB6600A8E9FF /* SongPlayerAPIClient.swift in Sources */,
 				C2B8CDCF2A068023008D0DE4 /* DownloadManager.swift in Sources */,
 				C2B8CDD52A0680B7008D0DE4 /* BasicDownloadManager.swift in Sources */,
+				C2D405172A0789C80013B445 /* AlertDialogModel.swift in Sources */,
 				C2D405132A0755BB0013B445 /* LiveStreamAudioPlayer.swift in Sources */,
 				C2B8CDDB2A0682D1008D0DE4 /* DownloadOperation.swift in Sources */,
 				C2D3F17A2A05FB6600A8E9FF /* ServicesContainer.swift in Sources */,

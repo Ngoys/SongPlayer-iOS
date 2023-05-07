@@ -1,6 +1,6 @@
 import Foundation
 
-struct SongUIState { //LALA chnage name
+struct SongUIState {
     var status: SongStatus = .canDownload
 
     // Future expansion

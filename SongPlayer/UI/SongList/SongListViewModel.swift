@@ -94,8 +94,9 @@ class SongListViewModel: StatefulViewModel<[Song]> {
                 case .downloading(let progress):
                     uiStateClone.status = .isDownloading(progress: progress)
 
-                case .error(_):
+                case .error(let downloadError):
                     uiStateClone.status = .canDownload
+                    self.promptUIAlertController.send(downloadError.errorAlertDialog)
 
                 case .queued:
                     uiStateClone.status = .isDownloading(progress: 0)

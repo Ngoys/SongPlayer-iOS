@@ -39,7 +39,7 @@ class BaseViewController: UIViewController {
     }
 
     //----------------------------------------
-    // MARK: - Internals
+    // MARK: - Properties
     //----------------------------------------
 
     var cancellables: Set<AnyCancellable> = Set()
