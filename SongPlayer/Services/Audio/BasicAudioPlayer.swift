@@ -113,16 +113,16 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
 
                     switch player.timeControlStatus {
                     case .paused:
-                        print("BasicAudioPlayer - timeControlStatus => paused")
+                        print("BasicAudioPlayer - timeControlStatus - paused")
 
                     case .playing:
-                        print("BasicAudioPlayer - timeControlStatus => playing")
+                        print("BasicAudioPlayer - timeControlStatus - playing")
 
                     case .waitingToPlayAtSpecifiedRate:
-                        print("BasicAudioPlayer - timeControlStatus => waitingToPlayAtSpecifiedRate")
+                        print("BasicAudioPlayer - timeControlStatus - waitingToPlayAtSpecifiedRate")
 
                     default:
-                        print("BasicAudioPlayer - timeControlStatus => unknown")
+                        print("BasicAudioPlayer - timeControlStatus - unknown")
                     }
 
                     self.audioPlayerStateDidChangeSubject.send(self)
@@ -133,16 +133,16 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
 
                     switch player.reasonForWaitingToPlay {
                     case AVPlayer.WaitingReason.evaluatingBufferingRate:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay => evaluatingBufferingRate")
+                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - evaluatingBufferingRate")
 
                     case AVPlayer.WaitingReason.noItemToPlay:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay => noItemToPlay")
+                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - noItemToPlay")
 
                     case AVPlayer.WaitingReason.toMinimizeStalls:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay => toMinimizeStalls")
+                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - toMinimizeStalls")
 
                     default:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay => unknown")
+                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - unknown")
                     }
                 })
 
@@ -151,17 +151,17 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
 
                     switch playerItem.status {
                     case .unknown:
-                        print("BasicAudioPlayer - AVPlayerItem.status => unknown")
+                        print("BasicAudioPlayer - AVPlayerItem.status - unknown")
 
                     case .readyToPlay:
-                        print("BasicAudioPlayer - AVPlayerItem.status => readyToPlay")
+                        print("BasicAudioPlayer - AVPlayerItem.status - readyToPlay")
 
                     case .failed:
-                        print("BasicAudioPlayer - AVPlayerItem.status => failed")
+                        print("BasicAudioPlayer - AVPlayerItem.status - failed")
                         self.pause(forceDispose: true)
 
                     default:
-                        print("BasicAudioPlayer - AVPlayer.status => unknown")
+                        print("BasicAudioPlayer - AVPlayer.status - unknown")
                     }
                 })
 

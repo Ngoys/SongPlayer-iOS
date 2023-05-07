@@ -116,7 +116,7 @@ class AudioPlayerService: NSObject, AudioPlayer {
         currentAudioPlayer?.play(seek: seek)
     }
 
-    func pause(forceDispose: Bool) {
+    func pause(forceDispose: Bool = false) {
         if self.isPlaying {
             currentAudioPlayer?.pause(forceDispose: forceDispose)
             try? audioSession.setActive(false)

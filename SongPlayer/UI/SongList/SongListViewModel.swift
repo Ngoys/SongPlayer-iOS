@@ -7,10 +7,11 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     // MARK: - Initialization
     //----------------------------------------
 
-    init(songStore: SongStore, downloadStore: DownloadStore, coreDataStore: CoreDataStore) {
+    init(songStore: SongStore, downloadStore: DownloadStore, coreDataStore: CoreDataStore, audioPlayerService: AudioPlayerService) {
         self.songStore = songStore
         self.downloadStore = downloadStore
         self.coreDataStore = coreDataStore
+        self.audioPlayerService = audioPlayerService
     }
 
     //----------------------------------------
@@ -67,14 +68,13 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     }
 
     func play(id: String) {
-        guard let song = self.songsSubject.value.first(where: { $0.id == id }),
-              let localFilePath = self.coreDataStore.fetchSongLocalFilePath(id: id),
-              let localPathURL = URL(string: localFilePath) else { return }
-
-        print("hello world")
+        guard let song = self.songsSubject.value.first(where: { $0.id == id }) else { return }
+        audioPlayerService.currentAudioContent = song
+        audioPlayerService.play(seek: 0)
     }
 
     func pause() {
+        audioPlayerService.pause(forceDispose: false)
     }
 
     //----------------------------------------
@@ -88,4 +88,6 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     private let downloadStore: DownloadStore
 
     private let coreDataStore: CoreDataStore
+
+    private let audioPlayerService: AudioPlayerService
 }

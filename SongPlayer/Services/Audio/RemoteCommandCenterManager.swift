@@ -1,7 +1,7 @@
 import Foundation
 import MediaPlayer
 
-class RemoteCommandCenterManager {
+class RemoteCommandCenterManager: NSObject {
 
     //----------------------------------------
     // MARK: - Initialization
@@ -9,6 +9,8 @@ class RemoteCommandCenterManager {
 
     init(audioPlayer: AudioPlayer) {
         self.audioPlayer = audioPlayer
+
+        super.init()
 
         // More action to be implemented
         let center = MPRemoteCommandCenter.shared()

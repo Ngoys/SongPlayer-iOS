@@ -25,8 +25,11 @@ class ServiceContainer {
                            service: SongPlayerAPIClient(apiBaseURL: AppConstant.baseURL, httpClient: container.resolve(type: HTTPClient.self)))
 
         //----------------------------------------
-        // MARK: - Stores
+        // MARK: - Stores and Services
         //----------------------------------------
+
+        container.register(type: AudioPlayerService.self,
+                           service: AudioPlayerService())
 
         container.register(type: CoreDataStack.self,
                            service: CoreDataStack())
