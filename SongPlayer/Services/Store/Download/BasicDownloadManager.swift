@@ -29,8 +29,6 @@ class BasicDownloadManager: BaseDownloadManager {
             .sink { [weak self] status in
                 guard let self = self else { return }
 
-                downloadItem.status = status
-
                 switch status {
                 case .downloaded(let localFilePath):
                     guard let localPathURL = URL(string: localFilePath) else { return }
@@ -76,7 +74,7 @@ class BasicDownloadManager: BaseDownloadManager {
                     }
 
                 default:
-                    break
+                    downloadItem.status = status
                 }
             }.store(in: &cancellables)
 

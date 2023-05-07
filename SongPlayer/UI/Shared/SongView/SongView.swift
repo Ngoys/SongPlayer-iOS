@@ -50,9 +50,8 @@ class SongView: UIView {
         }
     }
     
-    var status: SongPresentationStatus? {
+    var status: SongStatus? {
         didSet {
-
             switch status {
             case .canPlay:
                 playPauseImageView.isHidden = false

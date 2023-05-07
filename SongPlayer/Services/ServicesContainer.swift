@@ -28,8 +28,14 @@ class ServiceContainer {
         // MARK: - Stores
         //----------------------------------------
 
+        container.register(type: CoreDataStack.self,
+                           service: CoreDataStack())
+
+        container.register(type: CoreDataStore.self,
+                           service: CoreDataStore(coreDataStack: container.resolve(type: CoreDataStack.self)))
+
         container.register(type: SongStore.self,
-                           service: SongStore(apiClient: container.resolve(type: SongPlayerAPIClient.self)))
+                           service: SongStore(apiClient: container.resolve(type: SongPlayerAPIClient.self), coreDataStore: container.resolve(type: CoreDataStore.self)))
 
         container.register(type: DownloadStore.self,
                            service: DownloadStore())

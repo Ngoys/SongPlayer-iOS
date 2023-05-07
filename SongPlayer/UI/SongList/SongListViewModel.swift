@@ -1,72 +1,77 @@
 import Foundation
 import Combine
 
-class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
+class SongListViewModel: StatefulViewModel<[Song]> {
 
     //----------------------------------------
     // MARK: - Initialization
     //----------------------------------------
 
-    init(songStore: SongStore, downloadStore: DownloadStore) {
+    init(songStore: SongStore, downloadStore: DownloadStore, coreDataStore: CoreDataStore) {
         self.songStore = songStore
         self.downloadStore = downloadStore
+        self.coreDataStore = coreDataStore
     }
 
     //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
 
-    override func load() -> AnyPublisher<[SongPresentationModel], Error> {
-        print("SongListViewModel - fetchSongs()")
+    override func load() -> AnyPublisher<[Song], Error> {
         return songStore.fetchSongs().map { songs in
             print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
-            let songPresentationModels = songs.map { song in
-                return SongPresentationModel(song: song)
-            }
-
-            self.songPresentationModelsSubject.send(songPresentationModels)
-            return self.songPresentationModelsSubject.value
+            self.songsSubject.send(songs)
+            return self.songsSubject.value
         }.eraseToAnyPublisher()
     }
 
-    func download(id: String) {
-        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
+    func fetchAllCoreDataSongs() -> [Song] {
+        return self.coreDataStore.fetchAllSongs()
+    }
 
-        let downloadItem = downloadStore.download(contentIdentifier: songPresentationModel.song.downloadContentIdentifier, downloadURL: songPresentationModel.song.downloadURL, downloadFileFormat: songPresentationModel.song.downloadFileFormat)
+    func download(id: String) {
+        guard let song = songsSubject.value.first(where: { $0.id == id }) else { return }
+
+        let downloadItem = downloadStore.download(contentIdentifier: song.downloadContentIdentifier, downloadURL: song.downloadURL, downloadFileFormat: song.downloadFileFormat)
         handleDownloadItemStatusChange(downloadItem: downloadItem)
     }
 
     private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
-        guard let songPresentationModel = self.songPresentationModelsSubject.value.first(where: { $0.song.id == downloadItem.contentIdentifier }) else { return }
+        guard let song = self.songsSubject.value.first(where: { $0.id == downloadItem.contentIdentifier }) else { return }
 
         downloadItem.statusDidChange
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] status in
                 guard let self = self else { return }
 
-                var stateClone = songPresentationModel.state.value
+                var uiStateClone = song.uiState.value
 
                 switch status {
-                case .downloaded(_):
-                    //TODO save song in coredata
-                    stateClone.status = .canPlay
+                case .downloaded(let localFilePath):
+                    self.coreDataStore.updateSongLocalFilePath(id: song.id, localFilePath: localFilePath)
+                    song.localFilePath = localFilePath
+                    uiStateClone.status = .canPlay
 
                 case .downloading(let progress):
-                    stateClone.status = .isDownloading(progress: progress)
+                    uiStateClone.status = .isDownloading(progress: progress)
 
                 case .error(_):
-                    stateClone.status = .canDownload
+                    uiStateClone.status = .canDownload
 
                 case .queued:
-                    stateClone.status = .isDownloading(progress: 0)
+                    uiStateClone.status = .isDownloading(progress: 0)
                 }
 
-                songPresentationModel.state.send(stateClone)
+                song.uiState.send(uiStateClone)
             }).store(in: &cancellables)
     }
 
     func play(id: String) {
-        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
+        guard let song = self.songsSubject.value.first(where: { $0.id == id }),
+              let localFilePath = self.coreDataStore.fetchSongLocalFilePath(id: id),
+              let localPathURL = URL(string: localFilePath) else { return }
+
+        print("hello world")
     }
 
     func pause() {
@@ -76,9 +81,11 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     // MARK: - Internals
     //----------------------------------------
 
-    private let songPresentationModelsSubject = CurrentValueSubject<[SongPresentationModel], Never>([])
+    private let songsSubject = CurrentValueSubject<[Song], Never>([])
 
     private let songStore: SongStore
 
     private let downloadStore: DownloadStore
+
+    private let coreDataStore: CoreDataStore
 }

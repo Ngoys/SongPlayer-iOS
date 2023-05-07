@@ -43,6 +43,8 @@ class SongListViewController: BaseViewController {
 
         collectionView.collectionViewLayout = createCollectionViewLayout()
         collectionView.delegate = self
+
+        statefulPlaceholderView.delegate = self
     }
 
     //----------------------------------------
@@ -57,8 +59,13 @@ class SongListViewController: BaseViewController {
                 self.statefulPlaceholderView.bind(state)
 
                 switch state {
-                case .loaded(let songPresentationModels):
-                    self.applySnapshot(songPresentationModels: songPresentationModels)
+                case .loading:
+                    let songs = self.viewModel.fetchAllCoreDataSongs()
+                    self.statefulPlaceholderView.isHidden = songs.isEmpty == false
+                    self.applySnapshot(songs: songs)
+
+                case .loaded(let songs):
+                    self.applySnapshot(songs: songs, animatingDifferences: false)
 
                 default:
                     break
@@ -96,25 +103,25 @@ class SongListViewController: BaseViewController {
     // MARK: - UICollectionView data source
     //----------------------------------------
 
-    private func applySnapshot(songPresentationModels: [SongPresentationModel], animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, SongPresentationModel>()
+    private func applySnapshot(songs: [Song], animatingDifferences: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Song>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(songPresentationModels)
+        snapshot.appendItems(songs)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     private lazy var dataSource = {
-        let dataSource = UICollectionViewDiffableDataSource<Section, SongPresentationModel>(
+        let dataSource = UICollectionViewDiffableDataSource<Section, Song>(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SongCell.self), for: indexPath) as! SongCell
-                let viewModel = SongCellViewModel(songPresentationModel: item)
+                let viewModel = SongCellViewModel(song: item)
                 cell.bindViewModel(viewModel)
 
                 cell.playButtonDidTapSubject
                     .sink { [weak self] _ in
                         guard let self = self else { return }
-                        self.viewModel.play(id: item.song.id)
+                        self.viewModel.play(id: item.id)
                     }.store(in: &cell.cancellables)
 
                 cell.pauseButtonDidTapSubject
@@ -126,7 +133,7 @@ class SongListViewController: BaseViewController {
                 cell.downloadButtonDidTapSubject
                     .sink { [weak self] _ in
                         guard let self = self else { return }
-                        self.viewModel.download(id: item.song.id)
+                        self.viewModel.download(id: item.id)
                     }.store(in: &cell.cancellables)
 
                 return cell
@@ -144,12 +151,23 @@ class SongListViewController: BaseViewController {
 }
 
 //----------------------------------------
-// MARK: - UICollectionView delegate
+// MARK: - UICollectionViewDelegate
 //----------------------------------------
 
 extension SongListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // No action
+    }
+}
+
+//----------------------------------------
+// MARK:- StatefulViewDelegate
+//----------------------------------------
+
+extension SongListViewController: StatefulPlaceholderViewDelegate {
+
+    func statefulPlaceholderViewRetryButtonDidTap(_ statefulPlaceholderView: StatefulPlaceholderView) {
+        viewModel.retryInitialLoad()
     }
 }
