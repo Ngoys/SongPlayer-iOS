@@ -36,11 +36,9 @@
 		C291D4CF2A06251800540FF9 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C291D4CD2A06251800540FF9 /* SongView.xib */; };
 		C291D4D02A06251800540FF9 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4CE2A06251800540FF9 /* SongView.swift */; };
 		C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D32A06291100540FF9 /* UIView+Extension.swift */; };
-		C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */; };
 		C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D72A062B3700540FF9 /* SongPresentationState.swift */; };
-		C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */; };
+		C291D4DA2A062B4D00540FF9 /* SongStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D92A062B4D00540FF9 /* SongStatus.swift */; };
 		C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */; };
-		C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */; };
 		C2B8CDC52A067D9A008D0DE4 /* DownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */; };
 		C2B8CDC72A067DE0008D0DE4 /* DownloadStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */; };
 		C2B8CDC92A067DFE008D0DE4 /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */; };
@@ -106,11 +104,9 @@
 		C291D4CD2A06251800540FF9 /* SongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongView.xib; sourceTree = "<group>"; };
 		C291D4CE2A06251800540FF9 /* SongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		C291D4D32A06291100540FF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationModel.swift; sourceTree = "<group>"; };
 		C291D4D72A062B3700540FF9 /* SongPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationState.swift; sourceTree = "<group>"; };
-		C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPresentationStatus.swift; sourceTree = "<group>"; };
+		C291D4D92A062B4D00540FF9 /* SongStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongStatus.swift; sourceTree = "<group>"; };
 		C291D4DB2A064E4E00540FF9 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
-		C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadError.swift; sourceTree = "<group>"; };
 		C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadStatus.swift; sourceTree = "<group>"; };
 		C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
@@ -280,9 +276,8 @@
 				C2B8CDDA2A0682D1008D0DE4 /* DownloadOperation.swift */,
 				C2B8CDDC2A0688C8008D0DE4 /* DownloadableContent.swift */,
 				C2D3F17E2A05FC4400A8E9FF /* Song.swift */,
-				C291D4D52A062A4100540FF9 /* SongPresentationModel.swift */,
 				C291D4D72A062B3700540FF9 /* SongPresentationState.swift */,
-				C291D4D92A062B4D00540FF9 /* SongPresentationStatus.swift */,
+				C291D4D92A062B4D00540FF9 /* SongStatus.swift */,
 				C2B8CDEC2A06F5FB008D0DE4 /* CoreDataModal */,
 			);
 			path = Modal;
@@ -296,7 +291,6 @@
 				C24FD05E2A05F45A0063D18B /* SongPlayerDateFormatter.swift */,
 				C24FD05F2A05F45A0063D18B /* URLRequest+Extension.swift */,
 				C291D4D32A06291100540FF9 /* UIView+Extension.swift */,
-				C291D4DE2A0654AB00540FF9 /* UIColor+Extension.swift */,
 				C24FD0642A05F5380063D18B /* String+Extension.swift */,
 			);
 			path = Utilities;
@@ -451,7 +445,7 @@
 			files = (
 				C2D3F17F2A05FC4400A8E9FF /* Song.swift in Sources */,
 				C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */,
-				C291D4DA2A062B4D00540FF9 /* SongPresentationStatus.swift in Sources */,
+				C291D4DA2A062B4D00540FF9 /* SongStatus.swift in Sources */,
 				C24FD02F2A05F0010063D18B /* AppCoordinator.swift in Sources */,
 				C291D4D82A062B3700540FF9 /* SongPresentationState.swift in Sources */,
 				C2D3F1792A05FB6600A8E9FF /* HTTPClient.swift in Sources */,
@@ -475,7 +469,6 @@
 				C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */,
 				C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */,
 				C2B8CDD72A0680B7008D0DE4 /* VideoDownloadManager.swift in Sources */,
-				C291D4D62A062A4100540FF9 /* SongPresentationModel.swift in Sources */,
 				C2B8CDEB2A06F5CC008D0DE4 /* SongPlayer.xcdatamodeld in Sources */,
 				C24FD0602A05F45A0063D18B /* AppConstant.swift in Sources */,
 				C24FD04F2A05F28A0063D18B /* StatefulPlaceholderView.swift in Sources */,
@@ -503,7 +496,6 @@
 				C2D3F1772A05FB6600A8E9FF /* APIClient.swift in Sources */,
 				C24FD0472A05F0CC0063D18B /* SongListViewController.swift in Sources */,
 				C2B8CDD62A0680B7008D0DE4 /* PDFDownloadManager.swift in Sources */,
-				C291D4DF2A0654AB00540FF9 /* UIColor+Extension.swift in Sources */,
 				C2B8CDEE2A06F67A008D0DE4 /* SongDataModal+CoreDataProperties.swift in Sources */,
 				C2D3F1812A05FC8900A8E9FF /* SongPlayerAPIJSON.swift in Sources */,
 			);

@@ -43,14 +43,14 @@ class CoreDataStore {
         }
     }
 
-    func fetchAllSongDataModals() -> [SongDataModal] {
+    func fetchAllSongs() -> [Song] {
         do {
             let fetchRequest = SongDataModal.fetchRequest()
             let results = try mainContext.fetch(fetchRequest)
-            print("CoreDataStore - fetchAllSongDataModals() - \(results)")
-            return results
+            print("CoreDataStore - fetchAllSongs() - \(results)")
+            return results.map { $0.toSong() }
         } catch {
-            print("CoreDataStore - fetchAllSongDataModals() - Error \(error)")
+            print("CoreDataStore - fetchAllSongs() - Error \(error)")
             return []
         }
     }

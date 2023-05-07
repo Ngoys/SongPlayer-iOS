@@ -1,10 +1,10 @@
 import Foundation
 
-struct SongPresentationState {
-    var status: SongPresentationStatus = .canDownload
+struct SongUIState { //LALA chnage name
+    var status: SongStatus = .canDownload
 
     // Future expansion
-    // We can add more properties here to govern the state of the SongPresentationModel and change the UI accordingly and easily
+    // We can add more properties here to govern the state of the Song and change the UI accordingly and easily
     // If one day, designer asked to separate out the "Download" button, I can easily add it here,
     // Then handle the UI on SongView
     var isFeatured: Bool = false

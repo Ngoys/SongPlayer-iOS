@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
+class SongListViewModel: StatefulViewModel<[Song]> {
 
     //----------------------------------------
     // MARK: - Initialization
@@ -16,82 +16,72 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
-    func fetchAllSongDataModals() -> [SongPresentationModel] {
-        return self.coreDataStore.fetchAllSongDataModals().map { songDataModal in
-            let songPresentationModel = SongPresentationModel(song: songDataModal.toSong())
-            if songDataModal.localFilePath != nil {
-                var stateClone = songPresentationModel.state.value
-                stateClone.status = .canPlay
-                songPresentationModel.state.send(stateClone)
-            }
-            return songPresentationModel
-        }
+    func fetchAllSongDataModals() -> [Song] {
+        return self.coreDataStore.fetchAllSongs()
     }
-    override func load() -> AnyPublisher<[SongPresentationModel], Error> {
+    override func load() -> AnyPublisher<[Song], Error> {
         print("SongListViewModel - fetchSongs()")
         return songStore.fetchSongs().map { songs in
             print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
 
-            let songDataModals = self.coreDataStore.fetchAllSongDataModals()
+            let songs = self.coreDataStore.fetchAllSongs()
 
-            let songPresentationModels = songs.map { song in
-                let songPresentationModel = SongPresentationModel(song: song)
+//            songs.map { song in
+//                // If the song is downloaded previously and stored in core data,
+//                // We change the status to .canPlay and update SongView's UI
+//                if let songDataModal = songDataModals.first(where: { $0.id == song.id }),
+//                   songDataModal.localFilePath != nil {
+//                    var uiStateClone = song.state.value
+//                    uiStateClone.status = .canPlay
+//                    song.state.send(uiStateClone)
+//                }
+//                return song
+//            }
 
-                // If the song is downloaded previously and stored in core data,
-                // We change the status to .canPlay and update SongView's UI
-                if let songDataModal = songDataModals.first(where: { $0.id == song.id }),
-                   songDataModal.localFilePath != nil {
-                    var stateClone = songPresentationModel.state.value
-                    stateClone.status = .canPlay
-                    songPresentationModel.state.send(stateClone)
-                }
-                return songPresentationModel
-            }
-
-            self.songPresentationModelsSubject.send(songPresentationModels)
-            return self.songPresentationModelsSubject.value
+            self.songsSubject.send(songs)
+            return self.songsSubject.value
         }.eraseToAnyPublisher()
     }
 
     func download(id: String) {
-        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }) else { return }
+        guard let song = songsSubject.value.first(where: { $0.id == id }) else { return }
 
-        let downloadItem = downloadStore.download(contentIdentifier: songPresentationModel.song.downloadContentIdentifier, downloadURL: songPresentationModel.song.downloadURL, downloadFileFormat: songPresentationModel.song.downloadFileFormat)
+        let downloadItem = downloadStore.download(contentIdentifier: song.downloadContentIdentifier, downloadURL: song.downloadURL, downloadFileFormat: song.downloadFileFormat)
         handleDownloadItemStatusChange(downloadItem: downloadItem)
     }
 
     private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
-        guard let songPresentationModel = self.songPresentationModelsSubject.value.first(where: { $0.song.id == downloadItem.contentIdentifier }) else { return }
+        guard let song = self.songsSubject.value.first(where: { $0.id == downloadItem.contentIdentifier }) else { return }
 
         downloadItem.statusDidChange
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] status in
                 guard let self = self else { return }
 
-                var stateClone = songPresentationModel.state.value
+                var uiStateClone = song.uiState.value
 
                 switch status {
                 case .downloaded(let localFilePath):
-                    self.coreDataStore.updateSongLocalFilePath(id: songPresentationModel.song.id, localFilePath: localFilePath)
-
-                    stateClone.status = .canPlay
+                    self.coreDataStore.updateSongLocalFilePath(id: song.id, localFilePath: localFilePath)
+                    song.localFilePath = localFilePath
+                    uiStateClone.status = .canPlay
 
                 case .downloading(let progress):
-                    stateClone.status = .isDownloading(progress: progress)
+                    uiStateClone.status = .isDownloading(progress: progress)
 
                 case .error(_):
-                    stateClone.status = .canDownload
+                    uiStateClone.status = .canDownload
 
                 case .queued:
-                    stateClone.status = .isDownloading(progress: 0)
+                    uiStateClone.status = .isDownloading(progress: 0)
                 }
 
-                songPresentationModel.state.send(stateClone)
+                song.uiState.send(uiStateClone)
             }).store(in: &cancellables)
     }
 
     func play(id: String) {
-        guard let songPresentationModel = songPresentationModelsSubject.value.first(where: { $0.song.id == id }),
+        guard let song = songsSubject.value.first(where: { $0.id == id }),
               let localFilePath = self.coreDataStore.fetchSongLocalFilePath(id: id),
               let localPathURL = URL(string: localFilePath) else { return }
 
@@ -105,7 +95,7 @@ class SongListViewModel: StatefulViewModel<[SongPresentationModel]> {
     // MARK: - Internals
     //----------------------------------------
 
-    private let songPresentationModelsSubject = CurrentValueSubject<[SongPresentationModel], Never>([])
+    private let songsSubject = CurrentValueSubject<[Song], Never>([])
 
     private let songStore: SongStore
 

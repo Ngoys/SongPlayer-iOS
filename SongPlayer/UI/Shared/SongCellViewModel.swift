@@ -7,8 +7,8 @@ class SongCellViewModel {
     // MARK: - Initialization
     //----------------------------------------
 
-    init(songPresentationModel: SongPresentationModel) {
-        self.songPresentationModel = songPresentationModel
+    init(song: Song) {
+        self.song = song
     }
 
     //----------------------------------------
@@ -16,16 +16,16 @@ class SongCellViewModel {
     //----------------------------------------
 
     var titleText: String? {
-        return songPresentationModel.song.name
+        return song.name
     }
 
-    var statePublisher: AnyPublisher<SongPresentationState, Never> {
-        return songPresentationModel.state.eraseToAnyPublisher()
+    var statePublisher: AnyPublisher<SongUIState, Never> {
+        return song.uiState.eraseToAnyPublisher()
     }
 
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------
 
-    private let songPresentationModel: SongPresentationModel
+    private let song: Song
 }

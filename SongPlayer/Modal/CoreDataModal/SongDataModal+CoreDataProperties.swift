@@ -21,6 +21,6 @@ extension SongDataModal {
     }
 
     func toSong() -> Song {
-        return Song(id: id, name: name, audioURL: audioURL)
+        return Song(id: id, name: name, audioURL: audioURL, localFilePath: localFilePath)
     }
 }
