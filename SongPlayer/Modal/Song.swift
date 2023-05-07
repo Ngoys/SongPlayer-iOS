@@ -11,8 +11,13 @@ class Song: Codable, Hashable {
         self.id = id
         self.name = name
         self.audioURL = audioURL
-        self.localFilePath = localFilePath
         self.uiState = CurrentValueSubject<SongUIState, Never>(SongUIState())
+
+        // Trigger didSet on init()
+        // https://stackoverflow.com/a/33979852/18209126
+        defer {
+            self.localFilePath = localFilePath
+        }
     }
 
     //----------------------------------------

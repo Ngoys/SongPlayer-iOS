@@ -24,12 +24,25 @@ class SongStore: BaseStore {
                 let decodedModel = try self.decoder.decode(SongPlayerAPIJSON<[Song]>.self, from: apiResponse.data)
                 return decodedModel.data
             }
-            .map { [weak self] songs in
-                guard let self = self else { return songs }
-                songs.forEach { song in
+            .map { [weak self] fetchedSongs in
+                guard let self = self else { return fetchedSongs }
+
+                // Save fetched songs to Core Data
+                fetchedSongs.forEach { song in
                     self.coreDataStore.createOrUpdateSong(song: song)
                 }
-                return songs
+
+                // If the song is downloaded previously and stored in Core Data,
+                // We will update the localFilePath,
+                // and change the status to .canPlay to update theSongView's UI
+                let previouslyDownloadedSongs = self.coreDataStore.fetchAllSongs().filter{ fetchedSongs.contains($0) && $0.localFilePath != nil }
+                previouslyDownloadedSongs.forEach { song in
+                    if let fetchedSong = fetchedSongs.first(where: { $0 == song }) {
+                        fetchedSong.localFilePath = song.localFilePath
+                    }
+                }
+
+                return fetchedSongs
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

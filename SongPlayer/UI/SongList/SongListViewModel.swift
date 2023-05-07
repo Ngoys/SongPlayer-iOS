@@ -16,31 +16,17 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
-    func fetchAllSongDataModals() -> [Song] {
-        return self.coreDataStore.fetchAllSongs()
-    }
+
     override func load() -> AnyPublisher<[Song], Error> {
-        print("SongListViewModel - fetchSongs()")
         return songStore.fetchSongs().map { songs in
             print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
-
-            let songs = self.coreDataStore.fetchAllSongs()
-
-//            songs.map { song in
-//                // If the song is downloaded previously and stored in core data,
-//                // We change the status to .canPlay and update SongView's UI
-//                if let songDataModal = songDataModals.first(where: { $0.id == song.id }),
-//                   songDataModal.localFilePath != nil {
-//                    var uiStateClone = song.state.value
-//                    uiStateClone.status = .canPlay
-//                    song.state.send(uiStateClone)
-//                }
-//                return song
-//            }
-
             self.songsSubject.send(songs)
             return self.songsSubject.value
         }.eraseToAnyPublisher()
+    }
+
+    func fetchAllCoreDataSongs() -> [Song] {
+        return self.coreDataStore.fetchAllSongs()
     }
 
     func download(id: String) {
@@ -81,7 +67,7 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     }
 
     func play(id: String) {
-        guard let song = songsSubject.value.first(where: { $0.id == id }),
+        guard let song = self.songsSubject.value.first(where: { $0.id == id }),
               let localFilePath = self.coreDataStore.fetchSongLocalFilePath(id: id),
               let localPathURL = URL(string: localFilePath) else { return }
 

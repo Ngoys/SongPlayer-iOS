@@ -43,6 +43,8 @@ class SongListViewController: BaseViewController {
 
         collectionView.collectionViewLayout = createCollectionViewLayout()
         collectionView.delegate = self
+
+        statefulPlaceholderView.delegate = self
     }
 
     //----------------------------------------
@@ -57,8 +59,13 @@ class SongListViewController: BaseViewController {
                 self.statefulPlaceholderView.bind(state)
 
                 switch state {
-                case .loaded(let songs):
+                case .loading:
+                    let songs = self.viewModel.fetchAllCoreDataSongs()
+                    self.statefulPlaceholderView.isHidden = songs.isEmpty == false
                     self.applySnapshot(songs: songs)
+
+                case .loaded(let songs):
+                    self.applySnapshot(songs: songs, animatingDifferences: false)
 
                 default:
                     break
@@ -144,12 +151,23 @@ class SongListViewController: BaseViewController {
 }
 
 //----------------------------------------
-// MARK: - UICollectionView delegate
+// MARK: - UICollectionViewDelegate
 //----------------------------------------
 
 extension SongListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // No action
+    }
+}
+
+//----------------------------------------
+// MARK:- StatefulViewDelegate
+//----------------------------------------
+
+extension SongListViewController: StatefulPlaceholderViewDelegate {
+
+    func statefulPlaceholderViewRetryButtonDidTap(_ statefulPlaceholderView: StatefulPlaceholderView) {
+        viewModel.retryInitialLoad()
     }
 }
