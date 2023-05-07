@@ -39,14 +39,14 @@ class SongListViewModel: StatefulViewModel<[Song]> {
             }.store(in: &cancellables)
 
         downloadStore.downloadingItemsPublisher.zip(self.songsSubject)
-            .sink { [weak self] (downloadingItems, _) in
+            .sink { [weak self] (downloadingItems, songs) in
                 guard let self = self else { return }
 
                 // If there is existing download triggered by other View Controller page,
                 // Everytime when new value being accepted in songsSubject or there is a new downloading items,
-                // We need to check and update the uiState accordingly
+                // We need to check and update the uiState.status according to the downloadItem.status
                 let downloadingSongs = downloadingItems.filter { downloadItem in
-                    return self.songsSubject.value.contains(where: { $0.id == downloadItem.contentIdentifier })
+                    return songs.contains(where: { $0.id == downloadItem.contentIdentifier })
                 }
                 downloadingSongs.forEach { downloadItem in
                     self.handleDownloadItemStatusChange(downloadItem: downloadItem)
