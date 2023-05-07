@@ -101,3 +101,22 @@ extension Song: DownloadableContent {
         return .mp3
     }
 }
+
+//----------------------------------------
+// MARK: - AudioContent protocols
+//----------------------------------------
+
+extension Song: AudioContent {
+
+    var audioContentIdentifier: String {
+        return self.id
+    }
+    
+    var audioContentURL: URL? {
+        return URL(string: self.localFilePath ?? "")
+    }
+
+    var audioContentTitle: String? {
+        return self.name
+    }
+}
