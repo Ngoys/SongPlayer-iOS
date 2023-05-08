@@ -36,7 +36,6 @@
 		C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FD05F2A05F45A0063D18B /* URLRequest+Extension.swift */; };
 		C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FD0642A05F5380063D18B /* String+Extension.swift */; };
 		C283B83E2A086F73000EFA86 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C283B83D2A086F73000EFA86 /* FileManager+Extension.swift */; };
-		C283B8612A09AF84000EFA86 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C283B8582A09AF84000EFA86 /* BaseTest.swift */; };
 		C291D4CF2A06251800540FF9 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C291D4CD2A06251800540FF9 /* SongView.xib */; };
 		C291D4D02A06251800540FF9 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4CE2A06251800540FF9 /* SongView.swift */; };
 		C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D32A06291100540FF9 /* UIView+Extension.swift */; };
@@ -669,7 +668,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2ACDB8E2A09B0410089966E /* BaseTest.swift in Sources */,
-				C283B8612A09AF84000EFA86 /* BaseTest.swift in Sources */,
 				C2ACDB942A09B0410089966E /* StatefulViewModelTest.swift in Sources */,
 				C2ACDB922A09B0410089966E /* SongStoreTest.swift in Sources */,
 				C2ACDB8F2A09B0410089966E /* ServiceContainerTest.swift in Sources */,

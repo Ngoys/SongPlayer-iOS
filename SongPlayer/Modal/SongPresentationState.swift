@@ -1,6 +1,6 @@
 import Foundation
 
-struct SongUIState {
+struct SongUIState: Equatable {
     var status: SongStatus = .canDownload
 
     // Future expansion
