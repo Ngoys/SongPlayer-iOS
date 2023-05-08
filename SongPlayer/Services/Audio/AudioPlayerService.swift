@@ -20,15 +20,6 @@ class AudioPlayerService: NSObject, AudioPlayer {
         liveStreamAudioPlayer = LiveStreamAudioPlayer(remoteCommandCenterManager: remoteCommandCenterManager,
                                                       nowPlayingInfoCenterManager: nowPlayingInfoCenterManager)
 
-        // Observe and configure audio session.
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(audioSessionInterruption),
-                                               name: AVAudioSession.interruptionNotification,
-                                               object: audioSession)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(audioSessionRouteChanged),
-                                               name: AVAudioSession.routeChangeNotification,
-                                               object: audioSession)
         do {
             try audioSession.setCategory(.playback, mode: .default, options: [])
         } catch {
@@ -83,6 +74,7 @@ class AudioPlayerService: NSObject, AudioPlayer {
                 basicAudioPlayer.currentAudioContent = newValue
 
             case .livestream:
+                // Future expansion
                 if let currentAudioPlayer = currentAudioPlayer,
                    currentAudioPlayer !== liveStreamAudioPlayer {
                     currentAudioPlayer.reset()
@@ -97,13 +89,13 @@ class AudioPlayerService: NSObject, AudioPlayer {
         }
     }
 
-    var playbackRate: Float {
+    var currentTime: TimeInterval {
         get {
-            return currentAudioPlayer?.playbackRate ?? 1.0
+            return currentAudioPlayer?.currentTime ?? 0.0
         }
 
         set {
-            currentAudioPlayer?.playbackRate = newValue
+            currentAudioPlayer?.currentTime = newValue
         }
     }
 
@@ -111,9 +103,9 @@ class AudioPlayerService: NSObject, AudioPlayer {
     // MARK: - Actions
     //----------------------------------------
 
-    func play(seek: Double?) {
+    func play(seekTime: Double?) {
         setAudioSession(true)
-        currentAudioPlayer?.play(seek: seek)
+        currentAudioPlayer?.play(seekTime: seekTime)
     }
 
     func pause(forceDispose: Bool = false) {
@@ -126,14 +118,6 @@ class AudioPlayerService: NSObject, AudioPlayer {
     func reset() {
         currentAudioContent = nil
         currentAudioPlayer?.reset()
-    }
-
-    @objc dynamic private func audioSessionInterruption(_ notification: Notification) {
-        // To be implemented
-    }
-
-    @objc dynamic private func audioSessionRouteChanged(_ notification: Notification) {
-        // To be implemented
     }
     
     private func setAudioSession(_ active: Bool) {

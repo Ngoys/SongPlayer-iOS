@@ -2,6 +2,7 @@ import Foundation
 import MediaPlayer
 import Combine
 
+// Future expansion
 class LiveStreamAudioPlayer: NSObject, AudioPlayer {
 
     //----------------------------------------
@@ -24,41 +25,41 @@ class LiveStreamAudioPlayer: NSObject, AudioPlayer {
     }
 
     var isPlaying: Bool {
-        // To be implemented
         return false
     }
 
     var isLoading: Bool {
-        // To be implemented
         return false
     }
 
     var currentAudioContent: AudioContent? {
         get {
-            // To be implemented
             return nil
         }
         set {
-            // To be implemented
         }
     }
 
-    var playbackRate: Float = 1.0
+    var currentTime: TimeInterval {
+        get {
+            return 0
+        }
+
+        set {
+        }
+    }
 
     //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
 
-    func play(seek: Double?) {
-        // To be implemented
+    func play(seekTime: Double?) {
     }
 
     func pause(forceDispose: Bool) {
-        // To be implemented
     }
 
     func reset() {
-        // To be implemented
     }
 
     //----------------------------------------
