@@ -186,8 +186,8 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
             self.avPlayer?.pause()
         } else {
             self.disposeAudioPlayer()
-            audioPlayerStateDidChangeSubject.send(self)
         }
+        audioPlayerStateDidChangeSubject.send(self)
 
         remoteCommandCenterManager.updateRemoteCommandCenterCommandForCurrentItem()
         nowPlayingInfoCenterManager.updateNowPlayingInfo()

@@ -14,7 +14,7 @@ class SongListViewModel: StatefulViewModel<[Song]> {
         self.audioPlayerService = audioPlayerService
 
         super.init()
-
+        
         //----------------------------------------
         // MARK: - Start observing data
         //----------------------------------------
