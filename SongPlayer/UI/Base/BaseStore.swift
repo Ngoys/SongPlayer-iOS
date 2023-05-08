@@ -11,7 +11,6 @@ class BaseStore: NSObject {
         let decoder = JSONDecoder()
 
         // Do custom date format decoding here, if needed
-
         return decoder
     }()
 

@@ -29,17 +29,13 @@ class SongStore: BaseStore {
 
                 // Save fetched songs to Core Data
                 fetchedSongs.forEach { song in
-                    self.coreDataStore.createOrUpdateSong(song: song)
-                }
-
-                // If the song is downloaded previously and stored in Core Data,
-                // We will update the localFilePath,
-                // and change the status to .canPlay to update theSongView's UI
-                let previouslyDownloadedSongs = self.coreDataStore.fetchAllSongs().filter{ fetchedSongs.contains($0) && $0.localFilePath != nil }
-                previouslyDownloadedSongs.forEach { song in
-                    if let fetchedSong = fetchedSongs.first(where: { $0 == song }) {
-                        fetchedSong.localFilePath = song.localFilePath
+                    // If the song is downloaded previously and stored in Core Data,
+                    // We will update the localFilePath,
+                    // and change the status to .canPlay to update theSongView's UI
+                    if let coreDataSong = self.coreDataStore.fetchAllSongs().first(where: { $0.id == song.id && $0.localFilePath != nil }) {
+                        song.localFilePath = coreDataSong.localFilePath
                     }
+                    self.coreDataStore.createOrUpdateSong(song: song)
                 }
 
                 return fetchedSongs

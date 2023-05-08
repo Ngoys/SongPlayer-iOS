@@ -1,4 +1,3 @@
 import Foundation
-import Combine
 
-class MainViewModel {}
+class MainViewModel: BaseViewModel {}

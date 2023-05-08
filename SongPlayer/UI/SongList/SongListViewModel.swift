@@ -14,19 +14,21 @@ class SongListViewModel: StatefulViewModel<[Song]> {
         self.audioPlayerService = audioPlayerService
 
         super.init()
-
+        
         //----------------------------------------
         // MARK: - Start observing data
         //----------------------------------------
 
         audioPlayerService.audioPlayerStateDidChangePublisher
             .sink { [weak self] audioPlayer in
-                guard let self = self else { return }
-                guard let song = self.songsSubject.value.first(where: { $0.id == audioPlayer?.currentAudioContent?.audioContentIdentifier }) else { return }
+                guard let self = self,
+                      let song = self.songsSubject.value.first(where: { $0.id == audioPlayer?.currentAudioContent?.audioContentIdentifier }) else { return }
 
-                var uiStateClone = song.uiState.value
+                var uiStateClone = song.uiStateSubject.value
 
-                if audioPlayer?.isLoading == true {
+                if audioPlayer == nil {
+                    uiStateClone.status = .canPause
+                } else if audioPlayer?.isLoading == true {
                     // We can set the uiStateClone attribute, then the SongView will update automatically
                     // For example, set uiStateClone.status = .isLoading to show a activity indicator in the SongView UI
                 } else if audioPlayer?.isPlaying == true {
@@ -34,38 +36,42 @@ class SongListViewModel: StatefulViewModel<[Song]> {
                 } else if audioPlayer?.isPlaying == false {
                     uiStateClone.status = .canPlay
                 }
-
-                song.uiState.send(uiStateClone)
+                
+                song.uiStateSubject.send(uiStateClone)
             }.store(in: &cancellables)
 
-        songsSubject
-            .sink { [weak self] songs in
+        downloadStore.downloadingItemsPublisher.zip(self.songsSubject)
+            .sink { [weak self] (downloadingItems, songs) in
                 guard let self = self else { return }
-                songs.forEach { song in
-                    // Everytime when there is a new song being fetched from API, we need to check if it is being downloaded
-                    // If there is existing download triggered by other View Controller page,
-                    // Update the uiState accordingly
-                    if let downloadItem = self.downloadStore.getDownloadingItem(contentIdentifier: song.id) {
-                        self.handleDownloadItemStatusChange(downloadItem: downloadItem)
-                    }
+
+                // If there is existing download triggered by other View Controller page,
+                // Everytime when new value being accepted in songsSubject or there is a new downloading items,
+                // We need to check and update the uiState.status according to the downloadItem.status
+                let downloadingSongs = downloadingItems.filter { downloadItem in
+                    return songs.contains(where: { $0.id == downloadItem.contentIdentifier })
+                }
+                downloadingSongs.forEach { downloadItem in
+                    self.handleDownloadItemStatusChange(downloadItem: downloadItem)
                 }
             }.store(in: &cancellables)
     }
-
+    
     //----------------------------------------
     // MARK: - Actions
     //----------------------------------------
 
     override func load() -> AnyPublisher<[Song], Error> {
         return songStore.fetchSongs().map { songs in
-            print("SongListViewModel - fetchSongs() - completed:\n\(songs)")
+            print("SongListViewModel - fetchSongs() - completed ids: \(songs.map { $0.id })")
             self.songsSubject.send(songs)
             return self.songsSubject.value
         }.eraseToAnyPublisher()
     }
 
     func fetchAllCoreDataSongs() -> [Song] {
-        return self.coreDataStore.fetchAllSongs()
+        let songs = self.coreDataStore.fetchAllSongs()
+        self.songsSubject.send(songs)
+        return self.songsSubject.value
     }
 
     func download(id: String) {
@@ -78,12 +84,11 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
         guard let song = self.songsSubject.value.first(where: { $0.id == downloadItem.contentIdentifier }) else { return }
 
-        downloadItem.statusDidChange
-            .receive(on: DispatchQueue.main)
+        downloadItem.statusSubject
             .sink(receiveValue: { [weak self] status in
                 guard let self = self else { return }
 
-                var uiStateClone = song.uiState.value
+                var uiStateClone = song.uiStateSubject.value
 
                 switch status {
                 case .downloaded(let localFilePath):
@@ -94,14 +99,15 @@ class SongListViewModel: StatefulViewModel<[Song]> {
                 case .downloading(let progress):
                     uiStateClone.status = .isDownloading(progress: progress)
 
-                case .error(_):
+                case .error(let downloadError):
                     uiStateClone.status = .canDownload
+                    self.promptUIAlertController.send(downloadError.errorAlertDialog)
 
                 case .queued:
                     uiStateClone.status = .isDownloading(progress: 0)
                 }
 
-                song.uiState.send(uiStateClone)
+                song.uiStateSubject.send(uiStateClone)
             }).store(in: &cancellables)
     }
 
@@ -112,7 +118,7 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     }
 
     func pause() {
-        audioPlayerService.pause(forceDispose: false)
+        audioPlayerService.pause()
     }
 
     //----------------------------------------

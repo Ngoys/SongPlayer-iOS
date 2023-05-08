@@ -65,11 +65,25 @@ class SongListViewController: BaseViewController {
                     self.applySnapshot(songs: songs)
 
                 case .loaded(let songs):
-                    self.applySnapshot(songs: songs, animatingDifferences: false)
+                    self.applySnapshot(songs: songs)
 
+                case .loadingFailed(_):
+                    self.statefulPlaceholderView.isHidden = collectionView.numberOfItems(inSection: Section.main.rawValue) != 0
+                    
                 default:
                     break
                 }
+            }.store(in: &cancellables)
+
+        viewModel.promptUIAlertController
+            .sink { [weak self] alertDialogModel in
+                guard let self = self else { return }
+
+                let alertController = UIAlertController(title: alertDialogModel.title, message: alertDialogModel.message, preferredStyle: .alert)
+                let positiveAlertAction = UIAlertAction(title: alertDialogModel.positiveCTA, style: .default, handler: nil)
+
+                alertController.addAction(positiveAlertAction)
+                self.present(alertController, animated: true, completion: nil)
             }.store(in: &cancellables)
     }
 

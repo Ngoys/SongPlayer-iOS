@@ -9,12 +9,8 @@ class AppCoordinator: BaseCoordinator {
     //----------------------------------------
 
     init(mainViewController: MainViewController) {
-        self.mainViewController = mainViewController
-
-        super.init()
-
-        mainViewController.delegate = self
         mainViewController.viewModel = MainViewModel()
+        self.mainViewController = mainViewController
     }
 
     //----------------------------------------
@@ -22,6 +18,8 @@ class AppCoordinator: BaseCoordinator {
     //----------------------------------------
 
     func start() {
+        mainViewController.delegate = self
+
         startMainFlow()
     }
 

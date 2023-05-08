@@ -11,6 +11,7 @@ class SongCell: BaseUICollectionViewCell {
         songView.titleText = viewModel.titleText
 
         viewModel.statePublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 guard let self = self else { return }
                 self.songView.status = state.status

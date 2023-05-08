@@ -1,7 +1,6 @@
 import Foundation
 import Combine
 
-//TODO override all the .isReady state here??
 class DownloadOperation: Operation {
 
     //----------------------------------------
@@ -16,16 +15,64 @@ class DownloadOperation: Operation {
         super.init()
 
         self.qualityOfService = .background
+
+        //----------------------------------------
+        // MARK: - Start observing data
+        //----------------------------------------
+
+        downloadStatusSubject
+            .sink { [weak self] status in
+            guard let self = self else { return }
+
+            switch status {
+            case .downloaded(_):
+                self.state = .finished
+
+            case .error(_):
+                self.state = .finished
+
+            case .downloading(_):
+                if self.state != .executing {
+                    self.state = .executing
+                }
+
+            default:
+                self.state = .ready
+            }
+        }.store(in: &cancellables)
     }
 
     //----------------------------------------
     // MARK: - Properties
     //----------------------------------------
 
+    // Override Operation state
+    // https://fluffy.es/download-files-sequentially/
+    private enum OperationState : Int {
+        case ready
+        case executing
+        case finished
+    }
+
+    private var state : OperationState = .ready {
+        willSet {
+            self.willChangeValue(forKey: "isExecuting")
+            self.willChangeValue(forKey: "isFinished")
+        }
+
+        didSet {
+            print("DownloadOperation - state - didSet - id - \(contentIdentifier) - \(state)")
+            self.didChangeValue(forKey: "isExecuting")
+            self.didChangeValue(forKey: "isFinished")
+        }
+    }
+
+    override var isReady: Bool { return state == .ready }
+    override var isExecuting: Bool { return state == .executing }
+    override var isFinished: Bool { return state == .finished }
+
     private(set) var task: URLSessionDownloadTask?
-    let urlSession: URLSession
     let contentIdentifier: String
-    let downloadURL: URL
     var downloadStatusSubject = PassthroughSubject<DownloadStatus, Never>()
 
     //----------------------------------------
@@ -48,4 +95,14 @@ class DownloadOperation: Operation {
 
         self.task?.cancel()
     }
+
+    //----------------------------------------
+    // MARK: - Internals
+    //----------------------------------------
+
+    private let downloadURL: URL
+
+    private let urlSession: URLSession
+
+    private var cancellables: Set<AnyCancellable> = Set()
 }
