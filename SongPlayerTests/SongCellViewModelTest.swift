@@ -30,7 +30,7 @@ class SongCellViewModelTest: BaseTest {
 
     func testTitleText() {
         setupViewModel()
-        XCTAssertEqual(viewModel.titleText, mockSong.name)
+        XCTAssert(viewModel.titleText == mockSong.name)
     }
 
     func testStatePublisher() {

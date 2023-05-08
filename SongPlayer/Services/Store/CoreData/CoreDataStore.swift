@@ -34,6 +34,7 @@ class CoreDataStore {
                 currentSongDataModal?.id = song.id
                 currentSongDataModal?.name = song.name
                 currentSongDataModal?.audioURL = song.audioURL
+                currentSongDataModal?.localFilePath = song.localFilePath
 
                 print("CoreDataStore - createOrUpdateSong(id: \(song.id))")
                 self.saveInBackgroundContext()

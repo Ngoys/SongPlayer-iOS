@@ -29,8 +29,7 @@ class BaseTest: XCTestCase {
         midnight = calendar.startOfDay(for: today)
         tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
 
-        let coreDataStack = CoreDataStack()
-
+        mockCoreDataStack = CoreDataStack()
         mockHTTPClient = HTTPClient()
         mockAPIClient = SongPlayerAPIClient(apiBaseURL: apiBaseURL, httpClient: mockHTTPClient)
     }
