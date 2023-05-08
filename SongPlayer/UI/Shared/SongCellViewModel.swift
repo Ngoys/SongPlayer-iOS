@@ -20,7 +20,7 @@ class SongCellViewModel {
     }
 
     var statePublisher: AnyPublisher<SongUIState, Never> {
-        return song.uiState.eraseToAnyPublisher()
+        return song.uiStateSubject.eraseToAnyPublisher()
     }
 
     //----------------------------------------

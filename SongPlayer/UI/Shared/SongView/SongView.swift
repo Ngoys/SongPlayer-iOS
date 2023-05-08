@@ -54,28 +54,28 @@ class SongView: UIView {
         didSet {
             switch status {
             case .canPlay:
+                playPauseImageView.image = UIImage(named: "ic-play")
                 playPauseImageView.isHidden = false
                 downloadImageView.isHidden = true
                 circleProgressBar.isHidden = true
-                playPauseImageView.image = UIImage(named: "ic-play")
 
             case .canPause:
+                playPauseImageView.image = UIImage(named: "ic-pause")
                 playPauseImageView.isHidden = false
                 downloadImageView.isHidden = true
                 circleProgressBar.isHidden = true
-                playPauseImageView.image = UIImage(named: "ic-pause")
 
             case .canDownload:
-                playPauseImageView.isHidden = true
-                downloadImageView.isHidden = false
-                circleProgressBar.isHidden = true
                 downloadImageView.image = UIImage(named: "ic-download")
+                downloadImageView.isHidden = false
+                playPauseImageView.isHidden = true
+                circleProgressBar.isHidden = true
 
             case .isDownloading(let progress):
+                circleProgressBar.progress = progress
+                circleProgressBar.isHidden = false
                 playPauseImageView.isHidden = true
                 downloadImageView.isHidden = true
-                circleProgressBar.isHidden = false
-                circleProgressBar.progress = progress
 
             default:
                 break

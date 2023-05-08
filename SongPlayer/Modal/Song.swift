@@ -11,7 +11,7 @@ class Song: Codable, Hashable {
         self.id = id
         self.name = name
         self.audioURL = audioURL
-        self.uiState = CurrentValueSubject<SongUIState, Never>(SongUIState())
+        self.uiStateSubject = CurrentValueSubject<SongUIState, Never>(SongUIState())
 
         // Trigger localFilePath didSet on init()
         // https://stackoverflow.com/a/33979852/18209126
@@ -27,16 +27,16 @@ class Song: Codable, Hashable {
     let id: String
     let name: String
     let audioURL: URL
+    let uiStateSubject: CurrentValueSubject<SongUIState, Never>
     var localFilePath: String? {
         didSet {
             if localFilePath != nil {
-                var uiStateClone = self.uiState.value
+                var uiStateClone = self.uiStateSubject.value
                 uiStateClone.status = .canPlay
-                uiState.send(uiStateClone)
+                uiStateSubject.send(uiStateClone)
             }
         }
     }
-    let uiState: CurrentValueSubject<SongUIState, Never>
 
     //----------------------------------------
     // MARK: - Coding keys
@@ -59,7 +59,7 @@ class Song: Codable, Hashable {
         name = try container.decode(String.self, forKey: .name)
         audioURL = try container.decode(URL.self, forKey: .audioURL)
         localFilePath = try container.decodeIfPresent(String.self, forKey: .localFilePath)
-        uiState = CurrentValueSubject<SongUIState, Never>(SongUIState())
+        uiStateSubject = CurrentValueSubject<SongUIState, Never>(SongUIState())
     }
 
     func encode(to encoder: Encoder) throws {
@@ -113,7 +113,11 @@ extension Song: AudioContent {
     }
     
     var audioContentURL: URL? {
-        return URL(string: self.localFilePath ?? "")
+        if let documentDirectoryPath = try? FileManager.default.getDocumentDirectoryFolderURL().absoluteString,
+           let localFilePath = self.localFilePath {
+            return URL(string: documentDirectoryPath + localFilePath)
+        }
+        return nil
     }
 
     var audioContentTitle: String? {

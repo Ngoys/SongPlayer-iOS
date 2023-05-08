@@ -14,7 +14,6 @@ class DownloadOperation: Operation {
 
         super.init()
 
-        //check if really background thread TODO
         self.qualityOfService = .background
 
         //----------------------------------------
@@ -62,7 +61,7 @@ class DownloadOperation: Operation {
         }
 
         didSet {
-            print("DownloadOperation - state - didSet - \(state)")
+            print("DownloadOperation - state - didSet - id - \(contentIdentifier) - \(state)")
             self.didChangeValue(forKey: "isExecuting")
             self.didChangeValue(forKey: "isFinished")
         }

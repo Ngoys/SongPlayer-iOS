@@ -1,6 +1,6 @@
 import Foundation
 
-enum DownloadFileFormat {
+enum DownloadFileFormat: String {
     case mp3
     case jpg
     case png

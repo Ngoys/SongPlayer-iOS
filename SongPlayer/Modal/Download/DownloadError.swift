@@ -4,6 +4,7 @@ enum DownloadError: Error {
     case invalidURL
     case diskNotEnoughSpace
     case badRequest
+    case invalidFilePath
     case internetDisconnected
     case notSupportedYet
 
