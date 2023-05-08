@@ -9,9 +9,8 @@ class DownloadStore: BaseStore {
 
     override init() {
         self.basicDownloadManager = BasicDownloadManager()
-        self.zipDownloadManager = ZipDownloadManager()
-        self.pdfDownloadManager = PDFDownloadManager()
-        self.videoDownloadManager = VideoDownloadManager()
+        self.chatHistoryDownloadManager = ChatHistoryDownloadManager()
+        self.themeDownloadManager = ThemeDownloadManager()
     }
 
     //----------------------------------------
@@ -38,17 +37,15 @@ class DownloadStore: BaseStore {
         var downloadItem: DownloadItem?
         
         switch downloadFileFormat {
-        case .mp3, .jpg, .png:
+        case .chatHistory:
+            downloadItem = chatHistoryDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
+
+        case .theme:
+            downloadItem = themeDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
+
+        default:
             downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
 
-        case .zip:
-            downloadItem = zipDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
-
-        case .pdf:
-            downloadItem = pdfDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
-
-        case .mp4:
-            downloadItem = videoDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
         }
 
         guard let downloadItem = downloadItem else {
@@ -89,9 +86,7 @@ class DownloadStore: BaseStore {
 
     private let basicDownloadManager: BasicDownloadManager
 
-    private let zipDownloadManager: ZipDownloadManager
+    private let chatHistoryDownloadManager: ChatHistoryDownloadManager
 
-    private let pdfDownloadManager: PDFDownloadManager
-
-    private let videoDownloadManager: VideoDownloadManager
+    private let themeDownloadManager: ThemeDownloadManager
 }
