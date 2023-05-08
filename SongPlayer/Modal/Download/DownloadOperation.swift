@@ -14,7 +14,6 @@ class DownloadOperation: Operation {
 
         super.init()
 
-        //check if really background thread TODO
         self.qualityOfService = .background
 
         //----------------------------------------

@@ -34,32 +34,28 @@ class BasicDownloadManager: BaseDownloadManager {
                     guard let localPathURL = URL(string: localFilePath) else { return }
 
                     do {
-                        let rootFolderURL = try FileManager.default.url(
-                            for: .documentDirectory,
-                            in: .userDomainMask,
-                            appropriateFor: nil,
-                            create: false
-                        )
-
+                        let rootFolderURL = try FileManager.default.getDocumentDirectoryFolderURL()
                         let downloadsFolderURL = rootFolderURL.appendingPathComponent("Downloads/BandLab", isDirectory: true)
 
+                        // Create Downloads folder if there is none
                         if FileManager.default.fileExists(atPath: downloadsFolderURL.path) == false {
-                            // create Downloads folder if there is none
                             try FileManager.default.createDirectory(
                                 at: downloadsFolderURL,
                                 withIntermediateDirectories: true
                             )
                         }
+//                        BasicDownloadManager - downloadStatusSubject - .downloaded - file:///var/mobile/Containers/Data/Application/3AA62F9B-D595-4B92-B412-F725C55C6C3D/Documents/Downloads/BandLab/3.mp3
+                        //need to save Documents/Downloads/BandLab/3.mp3 TODO
 
                         // Write to file
                         let fileName = "\(downloadItem.contentIdentifier).\(downloadFileFormat)"
                         let fileURL = downloadsFolderURL.appendingPathComponent(fileName)
 
-                        // Replace file if needed
+                        // Replace file from localPathURL to fileURL
                         try? FileManager.default.removeItem(at: fileURL)
-
                         try FileManager.default.moveItem(at: localPathURL, to: fileURL)
 
+                        let url = URL(string: "Downloads/BandLab")?.appendingPathComponent(fileName)
                         print("BasicDownloadManager - downloadStatusSubject - .downloaded - \(fileURL.absoluteString)")
                         downloadItem.status = .downloaded(localFilePath: fileURL.absoluteString)
 
