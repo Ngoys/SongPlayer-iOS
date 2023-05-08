@@ -36,6 +36,7 @@
 		C24FD0632A05F45A0063D18B /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FD05F2A05F45A0063D18B /* URLRequest+Extension.swift */; };
 		C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FD0642A05F5380063D18B /* String+Extension.swift */; };
 		C283B83E2A086F73000EFA86 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C283B83D2A086F73000EFA86 /* FileManager+Extension.swift */; };
+		C283B8462A0920E2000EFA86 /* SongPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C283B8452A0920E2000EFA86 /* SongPlayerTests.swift */; };
 		C291D4CF2A06251800540FF9 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C291D4CD2A06251800540FF9 /* SongView.xib */; };
 		C291D4D02A06251800540FF9 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4CE2A06251800540FF9 /* SongView.swift */; };
 		C291D4D42A06291100540FF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291D4D32A06291100540FF9 /* UIView+Extension.swift */; };
@@ -84,6 +85,16 @@
 		C2D405172A0789C80013B445 /* AlertDialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D405162A0789C80013B445 /* AlertDialogModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C283B8472A0920E2000EFA86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C24FCFF42A05EF830063D18B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C24FCFFB2A05EF830063D18B;
+			remoteInfo = SongPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		556B22332A08981400D674B4 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		556B223C2A08CCBE00D674B4 /* LiveStreamRadio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamRadio.swift; sourceTree = "<group>"; };
@@ -116,6 +127,8 @@
 		C24FD0642A05F5380063D18B /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C24FD0662A05F6080063D18B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C283B83D2A086F73000EFA86 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		C283B8432A0920E2000EFA86 /* SongPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C283B8452A0920E2000EFA86 /* SongPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerTests.swift; sourceTree = "<group>"; };
 		C291D4CD2A06251800540FF9 /* SongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongView.xib; sourceTree = "<group>"; };
 		C291D4CE2A06251800540FF9 /* SongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		C291D4D32A06291100540FF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -172,6 +185,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C283B8402A0920E2000EFA86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -179,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				C24FCFFE2A05EF830063D18B /* SongPlayer */,
+				C283B8442A0920E2000EFA86 /* SongPlayerTests */,
 				C24FCFFD2A05EF830063D18B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -187,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				C24FCFFC2A05EF830063D18B /* SongPlayer.app */,
+				C283B8432A0920E2000EFA86 /* SongPlayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +342,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		C283B8442A0920E2000EFA86 /* SongPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				C283B8452A0920E2000EFA86 /* SongPlayerTests.swift */,
+			);
+			path = SongPlayerTests;
+			sourceTree = "<group>";
+		};
 		C291D4CC2A06251800540FF9 /* SongView */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +477,24 @@
 			productReference = C24FCFFC2A05EF830063D18B /* SongPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C283B8422A0920E2000EFA86 /* SongPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C283B84B2A0920E2000EFA86 /* Build configuration list for PBXNativeTarget "SongPlayerTests" */;
+			buildPhases = (
+				C283B83F2A0920E2000EFA86 /* Sources */,
+				C283B8402A0920E2000EFA86 /* Frameworks */,
+				C283B8412A0920E2000EFA86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C283B8482A0920E2000EFA86 /* PBXTargetDependency */,
+			);
+			name = SongPlayerTests;
+			productName = SongPlayerTests;
+			productReference = C283B8432A0920E2000EFA86 /* SongPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -454,11 +502,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					C24FCFFB2A05EF830063D18B = {
 						CreatedOnToolsVersion = 14.0.1;
+					};
+					C283B8422A0920E2000EFA86 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = C24FCFFB2A05EF830063D18B;
 					};
 				};
 			};
@@ -476,6 +528,7 @@
 			projectRoot = "";
 			targets = (
 				C24FCFFB2A05EF830063D18B /* SongPlayer */,
+				C283B8422A0920E2000EFA86 /* SongPlayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -493,6 +546,13 @@
 				C24FD0452A05F0CC0063D18B /* Main.storyboard in Resources */,
 				C24FD0502A05F28A0063D18B /* StatefulPlaceholderView.xib in Resources */,
 				C291D4CF2A06251800540FF9 /* SongView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C283B8412A0920E2000EFA86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,7 +633,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C283B83F2A0920E2000EFA86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C283B8462A0920E2000EFA86 /* SongPlayerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C283B8482A0920E2000EFA86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C24FCFFB2A05EF830063D18B /* SongPlayer */;
+			targetProxy = C283B8472A0920E2000EFA86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C24FD00A2A05EF840063D18B /* LaunchScreen.storyboard */ = {
@@ -708,10 +784,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82738PAV6A;
+				DEVELOPMENT_TEAM = 7YFC525745;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -724,7 +801,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer.temp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -739,10 +816,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82738PAV6A;
+				DEVELOPMENT_TEAM = 7YFC525745;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -755,11 +833,55 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer.temp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C283B8492A0920E2000EFA86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7YFC525745;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SongPlayer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SongPlayer";
+			};
+			name = Debug;
+		};
+		C283B84A2A0920E2000EFA86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7YFC525745;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SongPlayer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SongPlayer";
 			};
 			name = Release;
 		};
@@ -780,6 +902,15 @@
 			buildConfigurations = (
 				C24FD0112A05EF840063D18B /* Debug */,
 				C24FD0122A05EF840063D18B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C283B84B2A0920E2000EFA86 /* Build configuration list for PBXNativeTarget "SongPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C283B8492A0920E2000EFA86 /* Debug */,
+				C283B84A2A0920E2000EFA86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
