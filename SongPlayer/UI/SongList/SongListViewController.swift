@@ -65,8 +65,11 @@ class SongListViewController: BaseViewController {
                     self.applySnapshot(songs: songs)
 
                 case .loaded(let songs):
-                    self.applySnapshot(songs: songs, animatingDifferences: false)
+                    self.applySnapshot(songs: songs)
 
+                case .loadingFailed(_):
+                    self.statefulPlaceholderView.isHidden = collectionView.numberOfItems(inSection: Section.main.rawValue) != 0
+                    
                 default:
                     break
                 }

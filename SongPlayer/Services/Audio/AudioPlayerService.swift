@@ -112,14 +112,14 @@ class AudioPlayerService: NSObject, AudioPlayer {
     //----------------------------------------
 
     func play(seek: Double?) {
-        try? audioSession.setActive(true)
+        setAudioSession(true)
         currentAudioPlayer?.play(seek: seek)
     }
 
     func pause(forceDispose: Bool = false) {
         if self.isPlaying {
+            setAudioSession(false)
             currentAudioPlayer?.pause(forceDispose: forceDispose)
-            try? audioSession.setActive(false)
         }
     }
 
@@ -135,7 +135,14 @@ class AudioPlayerService: NSObject, AudioPlayer {
     @objc dynamic private func audioSessionRouteChanged(_ notification: Notification) {
         // To be implemented
     }
-
+    
+    private func setAudioSession(_ active: Bool) {
+        DispatchQueue.global(qos: .background).async {
+            // Need to be in the background thread to prevent UI lags on the main thread
+            try? self.audioSession.setActive(active)
+        }
+    }
+    
     //----------------------------------------
     // MARK: - Internals
     //----------------------------------------

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		556B22342A08981400D674B4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B22332A08981400D674B4 /* Reachability.swift */; };
+		556B223D2A08CCBE00D674B4 /* LiveStreamRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B223C2A08CCBE00D674B4 /* LiveStreamRadio.swift */; };
 		C24FD0002A05EF830063D18B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24FCFFF2A05EF830063D18B /* AppDelegate.swift */; };
 		C24FD0092A05EF840063D18B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24FD0082A05EF840063D18B /* Assets.xcassets */; };
 		C24FD00C2A05EF840063D18B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24FD00A2A05EF840063D18B /* LaunchScreen.storyboard */; };
@@ -83,6 +85,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		556B22332A08981400D674B4 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		556B223C2A08CCBE00D674B4 /* LiveStreamRadio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamRadio.swift; sourceTree = "<group>"; };
 		C24FCFFC2A05EF830063D18B /* SongPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24FCFFF2A05EF830063D18B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C24FD0082A05EF840063D18B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				C2D3F17E2A05FC4400A8E9FF /* Song.swift */,
 				C291D4D72A062B3700540FF9 /* SongPresentationState.swift */,
 				C291D4D92A062B4D00540FF9 /* SongStatus.swift */,
+				556B223C2A08CCBE00D674B4 /* LiveStreamRadio.swift */,
 				C2D405012A073AA80013B445 /* Audio */,
 				C2D405002A073A9C0013B445 /* Download */,
 				C2B8CDEC2A06F5FB008D0DE4 /* CoreDataModal */,
@@ -310,6 +315,7 @@
 				C291D4D32A06291100540FF9 /* UIView+Extension.swift */,
 				C24FD0642A05F5380063D18B /* String+Extension.swift */,
 				C283B83D2A086F73000EFA86 /* FileManager+Extension.swift */,
+				556B22332A08981400D674B4 /* Reachability.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				C24FD0422A05F0CC0063D18B /* BaseUICollectionViewCell.swift in Sources */,
 				C291D4DC2A064E4E00540FF9 /* CircleProgressBar.swift in Sources */,
 				C24FD0652A05F5380063D18B /* String+Extension.swift in Sources */,
+				556B22342A08981400D674B4 /* Reachability.swift in Sources */,
 				C2B8CDD72A0680B7008D0DE4 /* VideoDownloadManager.swift in Sources */,
 				C2B8CDEB2A06F5CC008D0DE4 /* SongPlayer.xcdatamodeld in Sources */,
 				C24FD0602A05F45A0063D18B /* AppConstant.swift in Sources */,
@@ -550,6 +557,7 @@
 				C2D3F1872A060CFE00A8E9FF /* SongCell.swift in Sources */,
 				C2D3F1752A05FB6600A8E9FF /* APIError.swift in Sources */,
 				C24FD0512A05F28A0063D18B /* StatefulViewModel.swift in Sources */,
+				556B223D2A08CCBE00D674B4 /* LiveStreamRadio.swift in Sources */,
 				C24FD0402A05F0CC0063D18B /* BaseStore.swift in Sources */,
 				C24FD03F2A05F0CC0063D18B /* BaseViewController.swift in Sources */,
 				C2D3F17D2A05FC0C00A8E9FF /* APIResponse.swift in Sources */,
@@ -700,7 +708,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7YFC525745;
+				DEVELOPMENT_TEAM = 82738PAV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
@@ -709,13 +717,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer.temp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -730,7 +739,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7YFC525745;
+				DEVELOPMENT_TEAM = 82738PAV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongPlayer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "BandLab Player";
@@ -739,13 +748,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shawn.bandlab.SongPlayer.temp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

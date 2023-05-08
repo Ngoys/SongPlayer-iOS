@@ -102,7 +102,9 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                 print("BasicAudioPlayer - could not get audioContentURL for the currentAudioContent \(currentAudioContent.audioContentURL)")
                 return
             }
-
+            
+            print("BasicAudioPlayer - play - URL: \(String(describing: currentAudioContent.audioContentURL))")
+            
             if self.avPlayer == nil {
                 let avAsset = AVURLAsset(url: mediaURL)
                 let avPlayerItem = AVPlayerItem(asset: avAsset)
@@ -164,13 +166,13 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                         print("BasicAudioPlayer - AVPlayerItem.status - unknown")
                     }
                 })
-
                 self.avPlayer = avPlayer
             }
-
             self.avPlayer?.rate = playbackRate
         }
-
+        
+        self.audioPlayerStateDidChangeSubject.send(self)
+        
         remoteCommandCenterManager.updateRemoteCommandCenterCommandForCurrentItem()
         nowPlayingInfoCenterManager.updateNowPlayingInfo()
     }

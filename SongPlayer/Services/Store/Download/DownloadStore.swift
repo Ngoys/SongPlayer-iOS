@@ -27,6 +27,10 @@ class DownloadStore: BaseStore {
     //----------------------------------------
 
     func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
+        if Reachability.isConnectedToNetwork() == false {
+            return DownloadItem(contentIdentifier: contentIdentifier, downloadURL: downloadURL, status: .error(downloadError: .internetDisconnected))
+        }
+        
         if let downloadItem = downloadingItemsSubject.value.first(where: { $0.contentIdentifier == contentIdentifier }) {
             return downloadItem
         }
@@ -61,7 +65,7 @@ class DownloadStore: BaseStore {
     }
 
     private func handleDownloadItemStatusChange(downloadItem: DownloadItem) {
-        downloadItem.statusDidChange
+        downloadItem.statusSubject
             .sink(receiveValue: { [weak self] status in
                 guard let self = self else { return }
 
