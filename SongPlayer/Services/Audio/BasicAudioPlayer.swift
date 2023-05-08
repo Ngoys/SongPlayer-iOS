@@ -69,14 +69,26 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
         }
     }
 
-    var playbackRate: Float = 1.0 {
-        didSet {
-            if oldValue != self.playbackRate {
-                self.avPlayer?.rate = self.playbackRate
+    var currentTime: TimeInterval {
+        get {
+            guard let player = avPlayer, let playerItem = player.currentItem else {
+                return 0.0
+            }
 
-                if currentAudioContent != nil {
-                    nowPlayingInfoCenterManager.updateNowPlayingInfo()
-                    audioPlayerStateDidChangeSubject.send(self)
+            if playerItem.currentTime().isNumeric {
+                return playerItem.currentTime().seconds
+            } else {
+                return 0.0
+            }
+        }
+
+        set {
+            assert(Thread.isMainThread)
+
+            avPlayer?.seek(to: CMTime(seconds: newValue, preferredTimescale: 1)) { success in
+                if success {
+                    self.nowPlayingInfoCenterManager.updateNowPlayingInfo()
+                    self.audioPlayerStateDidChangeSubject.send(self)
                 }
             }
         }
@@ -86,9 +98,7 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
     // MARK: - Actions
     //----------------------------------------
 
-    func play(seek: Double?) {
-        // To be implemented, for seek
-
+    func play(seekTime: Double?) {
         assert(Thread.isMainThread)
 
         guard let currentAudioContent = self.currentAudioContent else {
@@ -96,13 +106,13 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
         }
 
         if self.avPlayer?.currentItem != nil && self.avPlayer?.timeControlStatus == .paused {
-            self.avPlayer?.rate = playbackRate
+            self.avPlayer?.play()
         } else {
             guard let mediaURL = currentAudioContent.audioContentURL else {
                 print("BasicAudioPlayer - could not get audioContentURL for the currentAudioContent \(currentAudioContent.audioContentURL)")
                 return
             }
-            
+
             print("BasicAudioPlayer - play - URL: \(String(describing: currentAudioContent.audioContentURL))")
             
             if self.avPlayer == nil {
@@ -110,12 +120,15 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                 let avPlayerItem = AVPlayerItem(asset: avAsset)
                 let avPlayer = AVPlayer(playerItem: avPlayerItem)
 
+                NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+
                 observations.append(avPlayer.observe(\AVPlayer.timeControlStatus) { [weak self] player, change in
                     guard let self = self else { return }
 
                     switch player.timeControlStatus {
                     case .paused:
                         print("BasicAudioPlayer - timeControlStatus - paused")
+
 
                     case .playing:
                         print("BasicAudioPlayer - timeControlStatus - playing")
@@ -128,24 +141,6 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                     }
 
                     self.audioPlayerStateDidChangeSubject.send(self)
-                })
-
-                observations.append(avPlayer.observe(\AVPlayer.reasonForWaitingToPlay) { [weak self] player, change in
-                    guard let self = self else { return }
-
-                    switch player.reasonForWaitingToPlay {
-                    case AVPlayer.WaitingReason.evaluatingBufferingRate:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - evaluatingBufferingRate")
-
-                    case AVPlayer.WaitingReason.noItemToPlay:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - noItemToPlay")
-
-                    case AVPlayer.WaitingReason.toMinimizeStalls:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - toMinimizeStalls")
-
-                    default:
-                        print("BasicAudioPlayer - AVPlayer.reasonForWaitingToPlay - unknown")
-                    }
                 })
 
                 observations.append(avPlayerItem.observe(\AVPlayerItem.status) { [weak self] playerItem, change in
@@ -167,8 +162,12 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
                     }
                 })
                 self.avPlayer = avPlayer
+
+                if let seekTime = seekTime {
+                    currentTime = seekTime
+                }
             }
-            self.avPlayer?.rate = playbackRate
+            self.avPlayer?.play()
         }
         
         self.audioPlayerStateDidChangeSubject.send(self)
@@ -199,13 +198,17 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
         pause(forceDispose: false)
         disposeAudioPlayer()
         _currentAudioContent = nil
-        playbackRate = 1.0
     }
 
     private func disposeAudioPlayer() {
         observations.removeAll()
         self.avPlayer?.replaceCurrentItem(with: nil)
         self.avPlayer = nil
+    }
+
+    @objc private func playerDidFinishPlaying(notification: NSNotification) {
+        print("BasicAudioPlayer - playerDidFinishPlaying - Reset avPlayer.seek to the start of the audio")
+        currentTime = 0
     }
 
     //----------------------------------------

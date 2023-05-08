@@ -114,7 +114,7 @@ class SongListViewModel: StatefulViewModel<[Song]> {
     func play(id: String) {
         guard let song = self.songsSubject.value.first(where: { $0.id == id }) else { return }
         audioPlayerService.currentAudioContent = song
-        audioPlayerService.play(seek: 0)
+        audioPlayerService.play(seekTime: 0)
     }
 
     func pause() {

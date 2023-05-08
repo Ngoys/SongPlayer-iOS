@@ -6,9 +6,9 @@ protocol AudioPlayer: AnyObject {
     var currentAudioContent: AudioContent? { get set }
     var isPlaying: Bool { get }
     var isLoading: Bool { get }
-    var playbackRate: Float { get set }
+    var currentTime: TimeInterval { get set }
     
-    func play(seek: Double?)
+    func play(seekTime: Double?)
     func pause(forceDispose: Bool)
     func reset()
 }

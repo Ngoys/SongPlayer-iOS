@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import MediaPlayer
 
+// Future expansion
 class NowPlayingInfoCenterManager {
 
     //----------------------------------------
@@ -17,7 +18,6 @@ class NowPlayingInfoCenterManager {
     //----------------------------------------
 
     func updateNowPlayingInfo() {
-        // More info to be implemented
         var info: [String: Any] = [:]
 
         info[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.audio.rawValue
