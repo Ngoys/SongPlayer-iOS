@@ -44,22 +44,6 @@ class ServiceContainer {
             
             container.register(type: DownloadStore.self,
                                 service: DownloadStore())
-            
-            //----------------------------------------
-            // MARK: - DownloadManager
-            //----------------------------------------
-            
-            container.register(type: BasicDownloadManager.self,
-                                service: BasicDownloadManager())
-            
-            container.register(type: ZipDownloadManager.self,
-                                service: ZipDownloadManager())
-            
-            container.register(type: PDFDownloadManager.self,
-                                service: PDFDownloadManager())
-            
-            container.register(type: VideoDownloadManager.self,
-                                service: VideoDownloadManager())
 
             _container = container
         }
