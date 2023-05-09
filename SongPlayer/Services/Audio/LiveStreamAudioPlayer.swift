@@ -3,6 +3,8 @@ import MediaPlayer
 import Combine
 
 // Future expansion
+// We can integrate with any livestream radio player here in the class
+// Like https://github.com/tritondigital/ios-sdk
 class LiveStreamAudioPlayer: NSObject, AudioPlayer {
 
     //----------------------------------------

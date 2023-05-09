@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 // Future expansion
+// A modal created for handling livestream radio
 class LiveStreamRadio: Codable, Hashable {
 
     //----------------------------------------
