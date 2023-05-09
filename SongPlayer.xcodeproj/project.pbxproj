@@ -188,6 +188,7 @@
 		C2D405122A0755BB0013B445 /* LiveStreamAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamAudioPlayer.swift; sourceTree = "<group>"; };
 		C2D405142A075A3C0013B445 /* AudioContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContentType.swift; sourceTree = "<group>"; };
 		C2D405162A0789C80013B445 /* AlertDialogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDialogModel.swift; sourceTree = "<group>"; };
+		C2FCB7122A0A62CA00A70796 /* SongPlayer.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SongPlayer.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +212,7 @@
 		C24FCFF32A05EF830063D18B = {
 			isa = PBXGroup;
 			children = (
+				C2FCB7122A0A62CA00A70796 /* SongPlayer.xctestplan */,
 				C24FCFFE2A05EF830063D18B /* SongPlayer */,
 				C283B8442A0920E2000EFA86 /* SongPlayerTests */,
 				C24FCFFD2A05EF830063D18B /* Products */,

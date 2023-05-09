@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "A7490BE1-CC92-427C-875E-CCBB32CE0596",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SongPlayer.xcodeproj",
+      "identifier" : "C24FCFFB2A05EF830063D18B",
+      "name" : "SongPlayer"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SongPlayer.xcodeproj",
+        "identifier" : "C283B8422A0920E2000EFA86",
+        "name" : "SongPlayerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
