@@ -17,6 +17,6 @@
 2. Song info and downloaded audio file will persistent even if user kill the app.
 3. The app will prompt alert dialog if user try to download in offline. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/40fdf565-736e-48e1-a566-0a35ccb12660)
 4. SongView’s state are **never lost** when the list is scrolled up and down
-5. Song will be played from the start if the audio is finished
+5. If the audio is finished, the play button will play the same song from the start 
 6. SongView's play/pause button will be automatically updated if there is any new downloads triggered by other view models. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/1472be1a-6335-4268-9c5e-5f416f8ff193)
 7. For unit test, start the testing with `CMD+U`
