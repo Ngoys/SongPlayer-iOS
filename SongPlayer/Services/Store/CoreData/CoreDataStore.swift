@@ -34,6 +34,7 @@ class CoreDataStore {
                 currentSongDataModal?.id = song.id
                 currentSongDataModal?.name = song.name
                 currentSongDataModal?.audioURL = song.audioURL
+                currentSongDataModal?.localFilePath = song.localFilePath
 
                 print("CoreDataStore - createOrUpdateSong(id: \(song.id))")
                 self.saveInBackgroundContext()
@@ -47,28 +48,11 @@ class CoreDataStore {
         do {
             let fetchRequest = SongDataModal.fetchRequest()
             let results = try mainContext.fetch(fetchRequest)
-            print("CoreDataStore - fetchAllSongs() - \(results)")
+            print("CoreDataStore - fetchAllSongs() - \(results.map{ $0.id } )")
             return results.map { $0.toSong() }
         } catch {
             print("CoreDataStore - fetchAllSongs() - Error \(error)")
             return []
-        }
-    }
-
-    func fetchSongLocalFilePath(id: String) -> String? {
-        do {
-            let fetchRequest = SongDataModal.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-
-            let results = try mainContext.fetch(fetchRequest)
-            let localFilePath = results.first?.localFilePath
-
-            print("CoreDataStore - fetchSongLocalFilePath(id: \(id)) - \(localFilePath)")
-
-            return localFilePath
-        } catch {
-            print("CoreDataStore - fetchSongLocalFilePath(id: \(id) - Error \(error)")
-            return nil
         }
     }
 

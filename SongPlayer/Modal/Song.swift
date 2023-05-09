@@ -59,7 +59,10 @@ class Song: Codable, Hashable {
         name = try container.decode(String.self, forKey: .name)
         audioURL = try container.decode(URL.self, forKey: .audioURL)
         localFilePath = try container.decodeIfPresent(String.self, forKey: .localFilePath)
-        uiStateSubject = CurrentValueSubject<SongUIState, Never>(SongUIState())
+        
+        var uiState = SongUIState()
+        uiState.status = localFilePath != nil ? .canPlay : uiState.status
+        uiStateSubject = CurrentValueSubject<SongUIState, Never>(uiState)
     }
 
     func encode(to encoder: Encoder) throws {

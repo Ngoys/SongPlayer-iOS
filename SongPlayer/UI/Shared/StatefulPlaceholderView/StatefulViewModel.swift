@@ -16,7 +16,6 @@ enum Event<T> {
     case manualReload
     case proceedFromManualReloadingFailed
     case loadSuccess(T)
-    case loadNextPage
     case loadFailure(Error)
 }
 
@@ -40,20 +39,6 @@ class StatefulViewModel<T>: BaseViewModel {
         fatalError("\(#function) must be overridden by subclasses")
     }
 
-    func loadNextPage() {
-        // Load next page only when the current state is loaded or manual reloading failed
-        switch stateSubject.value {
-        case .manualReloadingFailed, .loaded:
-            break
-
-        default:
-            return
-        }
-
-        pageNumber += 1
-        transition(with: .loadNextPage)
-    }
-
     private func proceedToLoad() {
         load().sink { [weak self] completion in
             guard let self = self else { return }
@@ -71,12 +56,10 @@ class StatefulViewModel<T>: BaseViewModel {
     }
 
     func retryInitialLoad() {
-        pageNumber = 1
         transition(with: .retryInitialLoad)
     }
 
     func reloadManually() {
-        pageNumber = 1
         transition(with: .manualReload)
     }
 
@@ -88,9 +71,7 @@ class StatefulViewModel<T>: BaseViewModel {
     var statePublisher: AnyPublisher<State<T>, Never> {
         stateSubject.eraseToAnyPublisher()
     }
-
-    var pageNumber: Int = 1
-
+    
     //----------------------------------------
     // MARK: - Transition
     //----------------------------------------
@@ -130,16 +111,6 @@ class StatefulViewModel<T>: BaseViewModel {
         case (.loaded(let data), .manualReload):
             print("StatefulViewModel - transition from \(stateSubject.value) to \(event)")
             stateSubject.send(.manualReloading(data))
-            proceedToLoad()
-
-        case (.loaded(let data), .loadNextPage):
-            print("StatefulViewModel - transition from \(stateSubject.value) to \(event)")
-            stateSubject.send(.loadingNextPage)
-            proceedToLoad()
-
-        case (.manualReloading(let data), .loadNextPage):
-            print("StatefulViewModel - transition from \(stateSubject.value) to \(event)")
-            stateSubject.send(.loadingNextPage)
             proceedToLoad()
 
         case (.loadingFailed, .manualReload):

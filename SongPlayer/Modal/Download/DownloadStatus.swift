@@ -1,6 +1,6 @@
 import Foundation
 
-enum DownloadStatus {
+enum DownloadStatus: Equatable {
     case queued
     case downloading(progress: Double)
     case downloaded(localFilePath: String)
