@@ -1,0 +1,122 @@
+@startuml
+' STYLE START
+
+skinparam shadowing false
+' STYLE END
+
+
+class "DownloadManager" as DownloadManager << (P, GoldenRod) protocol >> { 
+  ~download(contentIdentifier:downloadURL:downloadFileFormat:) 
+}
+class "AudioPlayer" as AudioPlayer << (P, GoldenRod) protocol >> { 
+  ~audioPlayerStateDidChangePublisher : AnyPublisher<AudioPlayer?, Never>
+  ~currentAudioContent : AudioContent?
+  ~isPlaying : Bool
+  ~isLoading : Bool
+  ~currentTime : TimeInterval
+  ~play(seekTime:)
+  ~pause(forceDispose:)
+  ~reset() 
+}
+class "DownloadStore" as DownloadStore << (C, DarkSeaGreen) >> { 
+  ~downloadingItemsPublisher : AnyPublisher<[DownloadItem], Never>
+  ~download(contentIdentifier:downloadURL:downloadFileFormat:)
+  -downloadingItemsSubject
+  -basicDownloadManager : BasicDownloadManager
+  -chatHistoryDownloadManager : ChatHistoryDownloadManager
+  -themeDownloadManager : ThemeDownloadManager 
+}
+class "BasicDownloadManager" as BasicDownloadManager << (C, DarkSeaGreen) >> {  
+}
+class "ChatHistoryDownloadManager" as ChatHistoryDownloadManager << (C, DarkSeaGreen) >> {  
+}
+class "ThemeDownloadManager" as ThemeDownloadManager << (C, DarkSeaGreen) >> {  
+}
+class "BaseDownloadManager" as BaseDownloadManager << (C, DarkSeaGreen) >> { 
+}
+class "AudioPlayerService" as AudioPlayerService << (C, DarkSeaGreen) >> { 
+  -basicAudioPlayer : BasicAudioPlayer!
+  -liveStreamAudioPlayer : LiveStreamAudioPlayer!
+  -remoteCommandCenterManager : RemoteCommandCenterManager!
+  -nowPlayingInfoCenterManager : NowPlayingInfoCenterManager! 
+}
+class "BasicAudioPlayer" as BasicAudioPlayer << (C, DarkSeaGreen) >> {  
+}
+class "LiveStreamAudioPlayer" as LiveStreamAudioPlayer << (C, DarkSeaGreen) >> {  
+}
+class "SongStore" as SongStore << (C, DarkSeaGreen) >> {  
+  ~fetchSongs()
+}
+class "SongListViewModel" as SongListViewModel << (C, DarkSeaGreen) >> { 
+  ~fetchSongs()
+  ~fetchAllCoreDataSongs()
+  ~download(id:)
+  ~play(id:)
+  ~pause()
+  -songStore : SongStore
+  -downloadStore : DownloadStore
+  -coreDataStore : CoreDataStore
+  -audioPlayerService : AudioPlayerService 
+}
+class "Song" as Song << (C, DarkSeaGreen) >> {  
+  -id : String
+  -name : String
+  -audioURL : String
+  -uiState : UIState
+  -localFilePath: String?
+}
+class "LiveStreamRadio" as LiveStreamRadio << (C, DarkSeaGreen) >> {  
+  -id : String
+  -name : String
+  -audioURL : String
+}
+class "AudioContent" as AudioContent << (P, GoldenRod) protocol >> { 
+  -audioContentIdentifier : String
+  -audioContentType : AudioContentType
+  -audioContentURL : URL?
+  -audioContentTitle : String?
+}
+class "CoreDataStore" as CoreDataStore << (C, DarkSeaGreen) >> {  
+  ~createOrUpdateSong(song:)
+  ~fetchAllSongs()
+  ~updateSongLocalFilePath(id:, localFilePath:)
+  ~deleteAllSongs()
+}
+class "DownloadableContent" as DownloadableContent << (P, GoldenRod) protocol >> { 
+  -downloadContentIdentifier : String
+  -downloadURL : URL
+  -downloadFileFormat : DownloadFileFormat
+}
+
+SongStore <|-- SongListViewModel : has
+DownloadStore <|-- SongListViewModel : has
+CoreDataStore <|-- SongListViewModel : has
+AudioPlayerService <|-- SongListViewModel : has
+
+BasicDownloadManager <|-- DownloadStore : has
+ChatHistoryDownloadManager <|-- DownloadStore : has
+ThemeDownloadManager <|-- DownloadStore : has
+
+BaseDownloadManager <|-- BasicDownloadManager : inherits
+BaseDownloadManager <|-- ChatHistoryDownloadManager : inherits
+BaseDownloadManager <|-- ThemeDownloadManager : inherits
+DownloadManager <|.. BaseDownloadManager : conforms to
+
+AudioPlayer <|.. AudioPlayerService : conforms to
+AudioPlayer <|.. BasicAudioPlayer : conforms to
+AudioPlayer <|.. LiveStreamAudioPlayer : conforms to
+AudioContent <|.. AudioPlayer : can play
+
+BasicAudioPlayer <|.. AudioPlayerService : has
+LiveStreamAudioPlayer <|.. AudioPlayerService : has
+NowPlayingInfoCenterManager <|.. AudioPlayerService : has
+RemoteCommandCenterManager <|.. AudioPlayerService : has
+
+Song <|.. AudioContent : conforms to
+LiveStreamRadio <|.. AudioContent : conforms to
+
+Song <|.. DownloadableContent : conforms to
+
+DownloadableContent <|.. DownloadManager : can download
+
+@enduml
