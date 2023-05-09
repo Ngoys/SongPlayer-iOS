@@ -26,16 +26,20 @@ class SongStore: BaseStore {
             }
             .map { [weak self] fetchedSongs in
                 guard let self = self else { return fetchedSongs }
+            
+                let offlineSongs = self.coreDataStore.fetchAllSongs()
 
                 // Save fetched songs to Core Data
                 fetchedSongs.forEach { song in
                     // If the song is downloaded previously and stored in Core Data,
                     // We will update the localFilePath,
                     // and change the status to .canPlay to update theSongView's UI
-                    if let coreDataSong = self.coreDataStore.fetchAllSongs().first(where: { $0.id == song.id && $0.localFilePath != nil }) {
-                        song.localFilePath = coreDataSong.localFilePath
+                    if let offlineSongs = offlineSongs.first(where: { $0.id == song.id && $0.localFilePath != nil }) {
+                        song.localFilePath = offlineSongs.localFilePath
                     }
-                    self.coreDataStore.createOrUpdateSong(song: song)
+                    if offlineSongs.contains(song) == false {
+                        self.coreDataStore.createOrUpdateSong(song: song)
+                    }
                 }
 
                 return fetchedSongs

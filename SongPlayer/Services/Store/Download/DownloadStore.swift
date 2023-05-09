@@ -45,7 +45,6 @@ class DownloadStore: BaseStore {
 
         default:
             downloadItem = basicDownloadManager.download(contentIdentifier: contentIdentifier, downloadURL: downloadURL, downloadFileFormat: downloadFileFormat)
-
         }
 
         guard let downloadItem = downloadItem else {
