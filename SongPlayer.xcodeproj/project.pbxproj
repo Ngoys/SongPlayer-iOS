@@ -50,7 +50,6 @@
 		C2ACDB912A09B0410089966E /* SongListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ACDB882A09B0410089966E /* SongListViewModelTest.swift */; };
 		C2ACDB922A09B0410089966E /* SongStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ACDB892A09B0410089966E /* SongStoreTest.swift */; };
 		C2ACDB932A09B0410089966E /* DownloadStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ACDB8A2A09B0410089966E /* DownloadStoreTest.swift */; };
-		C2ACDB942A09B0410089966E /* StatefulViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ACDB8B2A09B0410089966E /* StatefulViewModelTest.swift */; };
 		C2B8CDC52A067D9A008D0DE4 /* DownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */; };
 		C2B8CDC72A067DE0008D0DE4 /* DownloadStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */; };
 		C2B8CDC92A067DFE008D0DE4 /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */; };
@@ -150,7 +149,6 @@
 		C2ACDB882A09B0410089966E /* SongListViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListViewModelTest.swift; sourceTree = "<group>"; };
 		C2ACDB892A09B0410089966E /* SongStoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongStoreTest.swift; sourceTree = "<group>"; };
 		C2ACDB8A2A09B0410089966E /* DownloadStoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadStoreTest.swift; sourceTree = "<group>"; };
-		C2ACDB8B2A09B0410089966E /* StatefulViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulViewModelTest.swift; sourceTree = "<group>"; };
 		C2B8CDC42A067D9A008D0DE4 /* DownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadError.swift; sourceTree = "<group>"; };
 		C2B8CDC62A067DE0008D0DE4 /* DownloadStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadStatus.swift; sourceTree = "<group>"; };
 		C2B8CDC82A067DFE008D0DE4 /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
@@ -369,7 +367,6 @@
 				C2ACDB872A09B0410089966E /* CoreDataStoreTest.swift */,
 				C2ACDB832A09B0410089966E /* SongCellViewModelTest.swift */,
 				C2ACDB882A09B0410089966E /* SongListViewModelTest.swift */,
-				C2ACDB8B2A09B0410089966E /* StatefulViewModelTest.swift */,
 			);
 			path = SongPlayerTests;
 			sourceTree = "<group>";
@@ -668,7 +665,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2ACDB8E2A09B0410089966E /* BaseTest.swift in Sources */,
-				C2ACDB942A09B0410089966E /* StatefulViewModelTest.swift in Sources */,
 				C2ACDB922A09B0410089966E /* SongStoreTest.swift in Sources */,
 				C2ACDB8F2A09B0410089966E /* ServiceContainerTest.swift in Sources */,
 				C2ACDB912A09B0410089966E /* SongListViewModelTest.swift in Sources */,

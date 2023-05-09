@@ -10,14 +10,12 @@ class SongCellViewModelTest: BaseTest {
 
     var viewModel: SongCellViewModel!
 
-    let mockSong = Song(id: "0", name: "Song1", audioURL: URL(string: "https://drive.google.com/uc?export=download&id=16-NMvJH4aJSgDpM66RizWe2qjHOP6n8f")!, localFilePath: nil)
-
     //----------------------------------------
     // MARK: - Setup
     //----------------------------------------
 
     func setupViewModel() {
-        viewModel = SongCellViewModel(song: mockSong)
+        viewModel = SongCellViewModel(song: mockSongs[0])
     }
 
     override func setUp() {
@@ -30,11 +28,15 @@ class SongCellViewModelTest: BaseTest {
 
     func testTitleText() {
         setupViewModel()
+        
+        let mockSong = mockSongs[0]
         XCTAssert(viewModel.titleText == mockSong.name)
     }
 
     func testStatePublisher() {
         setupViewModel()
+        
+        let mockSong = mockSongs[0]
 
         var sinkCount = 0
 
@@ -49,10 +51,10 @@ class SongCellViewModelTest: BaseTest {
         }, receiveValue: { value in
             sinkCount += 1
 
-            XCTAssert(value.status == self.mockSong.uiStateSubject.value.status)
-            XCTAssert(value.isUserFavourited == self.mockSong.uiStateSubject.value.isUserFavourited)
-            XCTAssert(value.isTop10Song == self.mockSong.uiStateSubject.value.isTop10Song)
-            XCTAssert(value.isFeatured == self.mockSong.uiStateSubject.value.isFeatured)
+            XCTAssert(value.status == mockSong.uiStateSubject.value.status)
+            XCTAssert(value.isUserFavourited == mockSong.uiStateSubject.value.isUserFavourited)
+            XCTAssert(value.isTop10Song == mockSong.uiStateSubject.value.isTop10Song)
+            XCTAssert(value.isFeatured == mockSong.uiStateSubject.value.isFeatured)
         }).store(in: &cancellables)
 
         XCTAssert(sinkCount == 1)

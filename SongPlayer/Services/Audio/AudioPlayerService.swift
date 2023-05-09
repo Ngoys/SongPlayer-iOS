@@ -33,10 +33,10 @@ class AudioPlayerService: NSObject, AudioPlayer {
         currentAudioPlayerSubject.sink { currentAudioPlayer in
             guard let currentAudioPlayer = currentAudioPlayer else { return }
 
-            currentAudioPlayer.audioPlayerStateDidChangePublisher.sink { playerService in
-                guard let playerService = playerService else { return }
+            currentAudioPlayer.audioPlayerStateDidChangePublisher.sink { audioPlayer in
+                guard let audioPlayer = audioPlayer else { return }
 
-                self.audioPlayerStateDidChangeSubject.send(playerService)
+                self.audioPlayerStateDidChangeSubject.send(audioPlayer)
             }.store(in: &self.cancellables)
         }.store(in: &cancellables)
     }
@@ -83,8 +83,8 @@ class AudioPlayerService: NSObject, AudioPlayer {
                 currentAudioPlayer = liveStreamAudioPlayer
                 liveStreamAudioPlayer.currentAudioContent = newValue
 
-            default:
-                fatalError("audioContentType \(String(describing: newValue?.audioContentType)) not handled")
+            case .none:
+                break
             }
         }
     }

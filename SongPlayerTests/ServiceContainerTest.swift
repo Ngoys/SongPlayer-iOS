@@ -26,7 +26,7 @@ class ServiceContainerTest: BaseTest {
     // MARK: - Tests
     //----------------------------------------
 
-    func testReferences() {
+    func testDependenciesReferences() {
         XCTAssert(ServiceContainer.container.resolve(type: SongStore.self) === ServiceContainer.container.resolve(type: SongStore.self))
         XCTAssert(ServiceContainer.container.resolve(type: CoreDataStore.self) === ServiceContainer.container.resolve(type: CoreDataStore.self))
         XCTAssert(ServiceContainer.container.resolve(type: AudioPlayerService.self) === ServiceContainer.container.resolve(type: AudioPlayerService.self))
