@@ -21,4 +21,4 @@
 6. SongView's play/pause button will be automatically updated if there is any new downloads triggered in other page. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/1472be1a-6335-4268-9c5e-5f416f8ff193)
 7. NowPlayingInfoCenterManager and RemoteCommandCenterManager implementation. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/6d916eff-b5a0-4a5d-96d1-f29fdda549e6)
  [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/d1685fb7-50cf-43b4-868a-6ea644a0628b)
-8. For unit test, start the testing with `CMD+U`
+8. Unit test, start the testing with `CMD+U`
