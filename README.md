@@ -18,5 +18,5 @@
 3. The app will prompt alert dialog if user try to download in offline. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/b895cee8-6dd0-442c-b430-a04fe5a1b005)
 4. SongView’s state are **never lost** when the list is scrolled up and down
 5. Song will be played from the start if the audio is finished
-6. SongView's play/pause button will be automatically updated if there is any new downloads triggered by other view models. [screenshot]("https://github.com/Ngoys/SongPlayer/assets/6831096/800929d8-10f9-49cd-8372-1350e91aac4d")
+6. SongView's play/pause button will be automatically updated if there is any new downloads triggered by other view models. [screenshot](https://github.com/Ngoys/SongPlayer/assets/6831096/800929d8-10f9-49cd-8372-1350e91aac4d)
 7. For unit test, start the testing with `CMD+U`
