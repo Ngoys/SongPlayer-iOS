@@ -4,7 +4,8 @@ import Combine
 // I'm using Class here because,
 // I need to keep the reference so anytime the uiStateSubject updates
 // the subscribed Publisher would get the changes
-// Struct would just create a copy
+
+// Struct would just create a copy and any changes would not affect anything
 class Song: Codable, Hashable {
 
     //----------------------------------------
