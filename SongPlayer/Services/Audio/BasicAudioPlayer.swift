@@ -25,11 +25,11 @@ class BasicAudioPlayer: NSObject, AudioPlayer {
 
     var isPlaying: Bool {
         assert(Thread.isMainThread)
-        guard let player = avPlayer else {
+        guard let avPlayer = avPlayer else {
             return false
         }
 
-        let isPlaying = player.currentItem != nil && player.timeControlStatus != .paused
+        let isPlaying = avPlayer.currentItem != nil && avPlayer.timeControlStatus != .paused
         return isPlaying
     }
 
