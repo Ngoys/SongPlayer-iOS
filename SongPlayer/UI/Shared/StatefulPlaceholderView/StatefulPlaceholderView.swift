@@ -65,8 +65,7 @@ class StatefulPlaceholderView: UIView {
             retryButton.isHidden = false
             
             // Update view based on error.
-            let error = error as? AppError
-            switch error {
+            switch error as? AppError {
             case .network:
                 titleLabel.text = "error.offline.title".localized
                 subtitleLabel.text = "error.offline.message".localized
