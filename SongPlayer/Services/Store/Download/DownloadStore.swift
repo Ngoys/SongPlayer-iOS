@@ -25,6 +25,10 @@ class DownloadStore: BaseStore {
     // MARK: - Actions
     //----------------------------------------
 
+    func download(content: DownloadableContent) -> DownloadItem {
+        return download(contentIdentifier: content.downloadContentIdentifier, downloadURL: content.downloadURL, downloadFileFormat: content.downloadFileFormat)
+    }
+
     func download(contentIdentifier: String, downloadURL: URL, downloadFileFormat: DownloadFileFormat) -> DownloadItem {
         if Reachability.isConnectedToNetwork() == false {
             return DownloadItem(contentIdentifier: contentIdentifier, downloadURL: downloadURL, status: .error(downloadError: .internetDisconnected))

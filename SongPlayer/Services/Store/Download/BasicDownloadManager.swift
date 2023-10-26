@@ -25,9 +25,7 @@ class BasicDownloadManager: BaseDownloadManager {
         let downloadOperation = DownloadOperation(urlSession: urlSession, contentIdentifier: contentIdentifier, downloadURL: downloadURL)
 
         downloadOperation.downloadStatusSubject
-            .sink { [weak self] status in
-                guard let self = self else { return }
-
+            .sink { status in
                 switch status {
                 case .downloaded(let localFilePath):
                     guard let localPathURL = URL(string: localFilePath) else { return }
@@ -60,7 +58,6 @@ class BasicDownloadManager: BaseDownloadManager {
                         } else {
                             print("BasicDownloadManager - downloadStatusSubject - .downloaded - Unable to get localFilePathURL")
                         }
-
                     } catch {
                         switch (error as NSError).code {
                         case 512:
