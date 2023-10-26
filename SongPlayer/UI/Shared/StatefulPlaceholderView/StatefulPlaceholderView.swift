@@ -65,8 +65,7 @@ class StatefulPlaceholderView: UIView {
             retryButton.isHidden = false
             
             // Update view based on error.
-            let error = error as? AppError
-            switch error {
+            switch error as? AppError {
             case .network:
                 titleLabel.text = "error.offline.title".localized
                 subtitleLabel.text = "error.offline.message".localized
@@ -125,26 +124,6 @@ class StatefulPlaceholderView: UIView {
     
     @IBAction func retryButtonDidTap(_ sender: UIButton) {
         delegate?.statefulPlaceholderViewRetryButtonDidTap(self)
-    }
-    
-    func showLoadingAnimation() {
-        isHidden = false
-        loadingIndicatorView.isHidden = false
-        loadingIndicatorView.startAnimating()
-        
-        titleLabel.isHidden = true
-        subtitleLabel.isHidden = true
-        retryButton.isHidden = true
-    }
-    
-    func hideLoadingAnimation() {
-        isHidden = true
-        loadingIndicatorView.isHidden = true
-        loadingIndicatorView.stopAnimating()
-        
-        titleLabel.isHidden = true
-        subtitleLabel.isHidden = true
-        retryButton.isHidden = true
     }
     
     //----------------------------------------
